@@ -116,10 +116,7 @@ export default function PortfolioGrid({ ignoreProject }: Props) {
           <AspectRatio ratio={1}>
             <Image
               alt={"LogicaHaus"}
-              // src={`/assets/logo/logo-1-light-w-bg.svg`}
-              src={
-                "https://lh3.googleusercontent.com/pw/AP1GczNt8g1GwgXmbrxFC7F3xJTVXeOQ7gOJMVtt_q10bRAs7PsWOQR-yJx_DyGTAMp4Shaho1bDDHxYTmICrXOQhD7HnYYCLz5soGqPjmRudQKyCZ4drWnStj0X3xsN2OVltP0-lwfFJK7EKSZi7bEei8Lgcw=w1120-h1494-s-no-gm?authuser=0"
-              }
+              src={`/assets/logo/logo-1-light-w-bg.svg`}
               fill
               className="image"
             />

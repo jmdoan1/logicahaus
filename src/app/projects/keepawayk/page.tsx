@@ -15,9 +15,13 @@ export default function Page() {
           width: "100%",
         }}
       >
-        <img
-          src={`${baseAssetUrl}/vid-2.gif`}
+        <video
+          src={`${baseAssetUrl}/vid-2.mp4`}
           style={{ width: "100%", maxWidth: 1000 }}
+          autoPlay
+          loop
+          muted
+          playsInline
         />
       </div>
       <br />
