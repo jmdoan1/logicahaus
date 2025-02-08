@@ -1,8 +1,12 @@
+"use client";
+
 import { AspectRatio } from "@/app/_components/aspect-ratio";
 import Image from "next/image";
 import { githubUrl } from "../global";
-// import PageInPage from "./page-in-page";
 import "./portfolio-grid.css";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 interface Project {
   name: string;
@@ -110,7 +114,8 @@ export default function PortfolioGrid({ ignoreProject }: Props) {
       </h2>
       <div className="grid container mx-auto px-4 sm:px-6 lg:px-8 ">
         <ProjectCard
-          key={"LH"}
+          index={0}
+          key={"project-0"}
           name="THIS WEBSITE"
           slug={githubUrl}
           scale={1}
@@ -118,21 +123,79 @@ export default function PortfolioGrid({ ignoreProject }: Props) {
         {projects
           .filter((x) => x.slug !== ignoreProject)
           .map((proj, index) => (
-            <ProjectCard key={`project-${proj.slug}-${index}`} {...proj} />
+            <ProjectCard
+              index={index + 1}
+              key={`project-${index + 1}`}
+              {...proj}
+            />
           ))}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ name, slug, scale, rotate, marginTop }: Project) {
+function ProjectCard({
+  name,
+  slug,
+  scale,
+  rotate,
+  marginTop,
+  index,
+}: Project & { index: number }) {
+  const [columns, setColumns] = useState(4);
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 0.5,
+          delay: (index % columns) * 0.2,
+        },
+      });
+    }
+  }, [controls, inView, index, columns]);
+
+  useEffect(() => {
+    const determineColumns = () => {
+      const width = window.innerWidth;
+
+      if (width < 500) {
+        setColumns(1);
+        console.log("1 column");
+      } else if (width < 768) {
+        setColumns(2);
+        console.log("2 columns");
+      } else if (width < 1024) {
+        setColumns(3);
+        console.log("3 columns");
+      } else {
+        setColumns(4);
+        console.log("4 columns");
+      }
+    };
+
+    determineColumns();
+    window.addEventListener("resize", determineColumns);
+    return () => window.removeEventListener("resize", determineColumns);
+  }, []);
+
   return (
-    <a
+    <motion.a
       href={slug === githubUrl ? slug : `/projects/${slug}`}
       className="item"
       key={slug}
       target={slug === githubUrl ? "_blank" : undefined}
       rel={slug === githubUrl ? "noopener noreferrer" : undefined}
+      ref={ref}
+      initial={{ y: 50, opacity: 0 }}
+      animate={controls}
     >
       <AspectRatio ratio={1} key={slug}>
         <Image
@@ -153,6 +216,6 @@ function ProjectCard({ name, slug, scale, rotate, marginTop }: Project) {
         />
         <p>{name.toUpperCase()}</p>
       </AspectRatio>
-    </a>
+    </motion.a>
   );
 }
