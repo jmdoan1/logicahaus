@@ -33,6 +33,13 @@ const testimonials: Testimonial[] = [
     company: "TKD React",
     link: "/projects/tkd-react",
   },
+  {
+    quote:
+      "Working with LogicaHaus was a blast! Jay was quick to suggest new features and we were blown away by the design!",
+    author: "Corrie Nieto",
+    company: "ScenePin",
+    link: "/projects/scenepin",
+  },
 ];
 
 const TestimonialCard = ({

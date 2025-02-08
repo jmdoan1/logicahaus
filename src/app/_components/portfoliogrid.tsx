@@ -104,48 +104,55 @@ interface Props {
 
 export default function PortfolioGrid({ ignoreProject }: Props) {
   return (
-    <section>
-      <div className="grid">
-        <a
-          href={githubUrl}
-          className="item"
-          key={"LogicaHaus"}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <AspectRatio ratio={1}>
-            <Image
-              alt={"LogicaHaus"}
-              src={`/assets/logo/logo-1-light-w-bg.svg`}
-              fill
-              className="image"
-            />
-            <p>{"THIS PROJECT"}</p>
-          </AspectRatio>
-          <p>THIS WEBSITE</p>
-        </a>
+    <section className="bg-gradient-to-br from-background via-muted to-background py-12 md:py-24 lg:py-32">
+      <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+        PORTFOLIO
+      </h2>
+      <div className="grid container mx-auto px-4 sm:px-6 lg:px-8 ">
+        <ProjectCard
+          key={"LH"}
+          name="THIS WEBSITE"
+          slug={githubUrl}
+          scale={1}
+        />
         {projects
           .filter((x) => x.slug !== ignoreProject)
-          .map(({ name, slug, scale, rotate, marginTop }) => (
-            <a href={`/projects/${slug}`} className="item" key={slug}>
-              <AspectRatio ratio={1} key={slug}>
-                <Image
-                  alt={slug}
-                  src={`/assets/projects/${slug}/preview.png`}
-                  style={{
-                    transform: `scale(${scale}) ${
-                      rotate ? `rotate(${rotate}deg)` : ""
-                    }`,
-                    marginTop,
-                  }}
-                  fill
-                  className="image"
-                />
-                <p>{name.toUpperCase()}</p>
-              </AspectRatio>
-            </a>
+          .map((proj, index) => (
+            <ProjectCard key={`project-${proj.slug}-${index}`} {...proj} />
           ))}
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ name, slug, scale, rotate, marginTop }: Project) {
+  return (
+    <a
+      href={slug === githubUrl ? slug : `/projects/${slug}`}
+      className="item"
+      key={slug}
+      target={slug === githubUrl ? "_blank" : undefined}
+      rel={slug === githubUrl ? "noopener noreferrer" : undefined}
+    >
+      <AspectRatio ratio={1} key={slug}>
+        <Image
+          alt={slug}
+          src={
+            slug === githubUrl
+              ? "/assets/logo/logo-1-light-w-bg.svg"
+              : `/assets/projects/${slug}/preview.png`
+          }
+          style={{
+            transform: `scale(${scale}) ${
+              rotate ? `rotate(${rotate}deg)` : ""
+            }`,
+            marginTop,
+          }}
+          fill
+          className="image"
+        />
+        <p>{name.toUpperCase()}</p>
+      </AspectRatio>
+    </a>
   );
 }

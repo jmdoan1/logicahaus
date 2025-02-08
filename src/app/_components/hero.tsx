@@ -31,7 +31,7 @@ const Hero = () => {
               <span className="gradient-text"> Digital Reality</span>
             </h1>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              LogicaHaus: Your one-stop solution for innovative software
+              LogicaHaus is your one-stop solution for innovative software
               development. From concept to code, we bring your vision to life.
             </p>
           </motion.div>
