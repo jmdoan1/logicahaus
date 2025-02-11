@@ -145,23 +145,14 @@ const Who = () => {
             style={{ display: "flex", flex: "row" }}
           >
             Who is{" "}
-            <span className="text-muted-foreground text-center ml-2 flex flex-row">
-              {"LogicaHaus".split("").map((letter, index) => (
-                <MotionDiv
-                  key={index}
-                  initial={{ y: -100, opacity: 0 }}
-                  final={{ y: 0, opacity: 1 }}
-                  transition={{
-                    duration: durationLogicaEach,
-                    delay: delayLogicaMain + delayLogicaEach * index,
-                    bounce: bounceLogicaEach,
-                  }}
-                  className=" pb-1"
-                >
-                  {letter}
-                </MotionDiv>
-              ))}
-            </span>
+            <AnimatedLogicaHaus
+              {...{
+                delayLogicaEach,
+                delayLogicaMain,
+                durationLogicaEach,
+                bounceLogicaEach,
+              }}
+            />
             ?
           </h2>
         </MotionDiv>
@@ -236,3 +227,57 @@ const Who = () => {
 };
 
 export default Who;
+
+const AnimatedLogicaHaus = ({
+  delayLogicaMain,
+  delayLogicaEach,
+  durationLogicaEach,
+  bounceLogicaEach,
+}: {
+  delayLogicaMain: number;
+  delayLogicaEach: number;
+  durationLogicaEach: number;
+  bounceLogicaEach: number;
+}) => {
+  const txt = "LogicaHaus";
+  return (
+    <span className=" text-center ml-2 relative">
+      <MotionDiv
+        initial={{ opacity: 0 }}
+        final={{ opacity: 1 }}
+        transition={{
+          duration: 1.5,
+          delay: delayLogicaMain + delayLogicaEach * txt.length,
+        }}
+        className="gradient-text pb-1"
+      >
+        {txt}
+      </MotionDiv>
+      <MotionDiv
+        initial={{ opacity: 1 }}
+        final={{ opacity: 0 }}
+        transition={{
+          duration: 1.5,
+          delay: delayLogicaMain + delayLogicaEach * txt.length,
+        }}
+        className="text-muted-foreground flex flex-row absolute top-0 bottom-1 left-0 right-0"
+      >
+        {txt.split("").map((letter, index) => (
+          <MotionDiv
+            key={index}
+            initial={{ y: -100, opacity: 0 }}
+            final={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: durationLogicaEach,
+              delay: delayLogicaMain + delayLogicaEach * index,
+              bounce: bounceLogicaEach,
+            }}
+            className="text-muted-foreground"
+          >
+            {letter}
+          </MotionDiv>
+        ))}
+      </MotionDiv>
+    </span>
+  );
+};
