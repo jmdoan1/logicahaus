@@ -152,7 +152,7 @@ function ProjectCard({
   useEffect(() => {
     if (inView) {
       controls.start({
-        y: 0,
+        x: 0,
         opacity: 1,
         transition: {
           duration: 0.5,
@@ -194,7 +194,7 @@ function ProjectCard({
       target={slug === githubUrl ? "_blank" : undefined}
       rel={slug === githubUrl ? "noopener noreferrer" : undefined}
       ref={ref}
-      initial={{ y: 50, opacity: 0 }}
+      initial={{ x: 50, opacity: 0 }}
       animate={controls}
     >
       <AspectRatio ratio={1} key={slug}>

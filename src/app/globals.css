@@ -34,8 +34,8 @@
 
     --radius: 0.5rem;
 
-    /* --theme-color: rgb(38, 117, 149, 0.75); */
-    --theme-color: #8c9eb9;
+    --theme-color: rgb(38, 117, 149, 0.75);
+    /* --theme-color: #b5eaff; */
   }
 
   .dark {
