@@ -20,6 +20,7 @@ const MotionDiv = (
     initial: boolean | VariantLabels | Target;
     final: Omit<AnimationDefinition, "transition">;
     transition: Transition;
+    element?: "div" | "span";
   }
 ) => {
   const { initial, final, transition, className, ...rest } = props;
@@ -36,7 +37,7 @@ const MotionDiv = (
   }, [controls, inView, final, transition]);
 
   return (
-    <motion.div
+    <motion.span
       ref={ref}
       animate={controls}
       initial={initial}
@@ -127,6 +128,9 @@ const Who = () => {
   const delayLogicaMain = 0.4;
   const delayLogicaEach = 0.1;
 
+  const bounceLogicaEach = 1;
+  const durationLogicaEach = 0.1;
+
   return (
     <section id="features" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6 space-y-2">
@@ -141,16 +145,23 @@ const Who = () => {
             style={{ display: "flex", flex: "row" }}
           >
             Who is{" "}
-            <motion.div
-              ref={logicaRef}
-              initial={{ y: -100, opacity: 0 }}
-              animate={logicaControls}
-            >
-              <div className="text-center ml-2">
-                {/* <DelayedDiv delay={0.5} durationMuliplier={0.2} yMuliplier={-1}></DelayedDiv> */}
-                <span className="gradient-text">LogicaHaus</span>
-              </div>
-            </motion.div>
+            <span className="text-muted-foreground text-center ml-2 flex flex-row">
+              {"LogicaHaus".split("").map((letter, index) => (
+                <MotionDiv
+                  key={index}
+                  initial={{ y: -100, opacity: 0 }}
+                  final={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: durationLogicaEach,
+                    delay: delayLogicaMain + delayLogicaEach * index,
+                    bounce: bounceLogicaEach,
+                  }}
+                  className=" pb-1"
+                >
+                  {letter}
+                </MotionDiv>
+              ))}
+            </span>
             ?
           </h2>
         </MotionDiv>
