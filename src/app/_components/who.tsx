@@ -47,89 +47,17 @@ const MotionDiv = (
   );
 };
 
-const DelayedDiv = ({
-  delay,
-  children,
-  yMuliplier = 1,
-  durationMuliplier = 1,
-}: {
-  delay: number;
-  children: JSX.Element | JSX.Element[];
-  yMuliplier?: number;
-  durationMuliplier?: number;
-}) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start({
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.5 * durationMuliplier, delay },
-      });
-    }
-  }, [controls, inView, delay, durationMuliplier]);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ y: 50 * yMuliplier, opacity: 0 }}
-      animate={controls}
-      className="flex flex-col items-center text-center"
-    >
-      {children}
-    </motion.div>
-  );
-};
-
 const Who = () => {
-  const shrugControls = useAnimation();
-  const logicaControls = useAnimation();
+  const durationDefault = 0.5;
+  const durationGradient = 1.5;
+  const durationNetwork = 3;
 
-  const [shrugRef, shrugInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  const [logicaRef, logicaInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (shrugInView) {
-      shrugControls.start({
-        x: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          delay: 1,
-        },
-      });
-    }
-  }, [shrugControls, shrugInView]);
-
-  useEffect(() => {
-    if (logicaInView) {
-      logicaControls.start({
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          //   delay: 1,
-        },
-      });
-    }
-  }, [logicaControls, logicaInView]);
-
-  const delayLogicaMain = 0.4;
+  const delayLogicaMain = durationDefault;
   const delayLogicaEach = 0.1;
-
-  const bounceLogicaEach = 1;
-  const durationLogicaEach = 0.1;
+  const delayDude = delayLogicaMain + 1.5;
+  const delayShrug = delayDude + durationDefault + 0.5;
+  const delayBut = delayShrug + 0.75;
+  const delayNetwork = delayBut + 1.25;
 
   return (
     <section id="features" className="w-full py-12 md:py-24 lg:py-32">
@@ -137,26 +65,30 @@ const Who = () => {
         <MotionDiv
           initial={{ y: 50, opacity: 0 }}
           final={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: durationDefault }}
           className="justify-center"
         >
           <h2
             className="text-3xl font-bold tracking-tighter sm:text-5xl"
-            style={{ display: "flex", flex: "row" }}
+            style={{ display: "flex", flex: "row", whiteSpace: "wrap" }}
           >
             Who is{" "}
             <AnimatedLogicaHaus
               {...{
+                durationGradient,
                 delayLogicaEach,
                 delayLogicaMain,
-                durationLogicaEach,
-                bounceLogicaEach,
               }}
             />
             ?
           </h2>
         </MotionDiv>
-        <DelayedDiv delay={0.5}>
+        <MotionDiv
+          initial={{ y: 50, opacity: 0 }}
+          final={{ y: 0, opacity: 1 }}
+          transition={{ duration: durationDefault, delay: delayDude }}
+          className="justify-center"
+        >
           <div
             style={{
               display: "flex",
@@ -168,18 +100,18 @@ const Who = () => {
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               I&apos;m really just a dude named Jay
             </p>
-            <motion.div
-              ref={shrugRef}
+            <MotionDiv
               initial={{ x: 50, opacity: 0 }}
-              animate={shrugControls}
+              final={{ x: 0, opacity: 1 }}
+              transition={{ duration: durationDefault, delay: delayShrug }}
               className="flex flex-col items-center space-y-4 text-center ml-2"
             >
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 ¯\_(ツ)_/¯
               </p>
-            </motion.div>
+            </MotionDiv>
           </div>
-        </DelayedDiv>
+        </MotionDiv>
         <div
           style={{
             display: "flex",
@@ -187,40 +119,70 @@ const Who = () => {
             justifyContent: "center",
           }}
         >
-          <DelayedDiv delay={1.5}>
+          <MotionDiv
+            initial={{ y: 50, opacity: 0 }}
+            final={{ y: 0, opacity: 1 }}
+            transition={{ duration: durationDefault, delay: delayBut }}
+            className="flex flex-col items-center space-y-4 text-center ml-2"
+          >
             <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               but
             </p>
-          </DelayedDiv>
-          <DelayedDiv delay={1.7}>
-            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              .
-            </p>
-          </DelayedDiv>
-          <DelayedDiv delay={1.9}>
-            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              .
-            </p>
-          </DelayedDiv>
-          <DelayedDiv delay={2.1}>
-            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              .
-            </p>
-          </DelayedDiv>
-        </div>
-        <DelayedDiv delay={2.75}>
-          <p
-            className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
-            style={{ display: "flex", flexDirection: "row" }}
+          </MotionDiv>
+          <MotionDiv
+            initial={{ y: 100, opacity: 0 }}
+            final={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: durationDefault,
+              delay: delayBut + 0.1,
+            }}
+            className="flex flex-col items-center space-y-4 text-center"
           >
-            Despite being a solo operation, LogicaHaus leverages a robust
-            network of skilled designers and developers to tackle projects of
-            any size or complexity. This flexible approach allows us to scale
-            our resources to meet your specific needs, whether you&apos;re
-            looking for the personalized attention of a single freelancer or the
-            comprehensive support of a full development team
-          </p>
-        </DelayedDiv>
+            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              .
+            </p>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ y: 100, opacity: 0 }}
+            final={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: durationDefault,
+              delay: delayBut + 0.2,
+            }}
+            className="flex flex-col items-center space-y-4 text-center"
+          >
+            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              .
+            </p>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ y: 100, opacity: 0 }}
+            final={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: durationDefault,
+              delay: delayBut + 0.3,
+            }}
+            className="flex flex-col items-center space-y-4 text-center"
+          >
+            <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              .
+            </p>
+          </MotionDiv>
+        </div>
+        {...RevealFromTop({
+          delay: delayNetwork,
+          duration: durationNetwork,
+          children: (
+            <p className="max-w-[900px] text-muted-foreground text-center md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Despite being a solo operation, LogicaHaus leverages a robust
+              network of skilled designers and developers to tackle projects of
+              any size or complexity. This flexible approach allows us to scale
+              our resources to meet your specific needs, whether you&apos;re
+              looking for the personalized attention of a single freelancer or
+              the comprehensive support of a full development team
+            </p>
+          ),
+        })}
       </div>
     </section>
   );
@@ -231,13 +193,11 @@ export default Who;
 const AnimatedLogicaHaus = ({
   delayLogicaMain,
   delayLogicaEach,
-  durationLogicaEach,
-  bounceLogicaEach,
+  durationGradient,
 }: {
   delayLogicaMain: number;
   delayLogicaEach: number;
-  durationLogicaEach: number;
-  bounceLogicaEach: number;
+  durationGradient: number;
 }) => {
   const txt = "LogicaHaus";
   return (
@@ -246,7 +206,7 @@ const AnimatedLogicaHaus = ({
         initial={{ opacity: 0 }}
         final={{ opacity: 1 }}
         transition={{
-          duration: 1.5,
+          duration: durationGradient,
           delay: delayLogicaMain + delayLogicaEach * txt.length,
         }}
         className="gradient-text pb-1"
@@ -257,7 +217,7 @@ const AnimatedLogicaHaus = ({
         initial={{ opacity: 1 }}
         final={{ opacity: 0 }}
         transition={{
-          duration: 1.5,
+          duration: durationGradient,
           delay: delayLogicaMain + delayLogicaEach * txt.length,
         }}
         className="text-muted-foreground flex flex-row absolute top-0 bottom-1 left-0 right-0"
@@ -268,9 +228,10 @@ const AnimatedLogicaHaus = ({
             initial={{ y: -100, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
             transition={{
-              duration: durationLogicaEach,
+              type: "spring",
+              stiffness: 500,
+              damping: 25,
               delay: delayLogicaMain + delayLogicaEach * index,
-              bounce: bounceLogicaEach,
             }}
             className="text-muted-foreground"
           >
@@ -280,4 +241,37 @@ const AnimatedLogicaHaus = ({
       </MotionDiv>
     </span>
   );
+};
+
+const RevealFromTop = ({
+  delay,
+  duration,
+  children,
+}: {
+  delay: number;
+  duration: number;
+  children: JSX.Element | JSX.Element[];
+}): JSX.Element[] => {
+  return [
+    <MotionDiv
+      key={0}
+      initial={{ height: 0, opacity: 0 }}
+      final={{ height: "auto", opacity: 1 }}
+      transition={{
+        duration,
+        delay,
+      }}
+      className="flex flex-col items-center space-y-4 text-center overflow-hidden"
+    >
+      {children}
+    </MotionDiv>,
+    <MotionDiv
+      key={1}
+      initial={{ opacity: 0 }}
+      final={{ height: 0 }}
+      transition={{ duration, delay }}
+    >
+      {children}
+    </MotionDiv>,
+  ];
 };

@@ -214,7 +214,9 @@ function ProjectCard({
           fill
           className="image"
         />
-        <p>{name.toUpperCase()}</p>
+        <p className="bg-gradient-to-r from-muted to-muted-foreground ">
+          {name.toUpperCase()}
+        </p>
       </AspectRatio>
     </motion.a>
   );
