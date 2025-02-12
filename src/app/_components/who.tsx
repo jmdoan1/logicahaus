@@ -12,7 +12,7 @@ import {
 } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const MotionDiv = (
+const MotionSpan = (
   props: Omit<
     HTMLMotionProps<"div">,
     "ref" | "animate" | "initial" | "transition"
@@ -62,7 +62,7 @@ const Who = () => {
   return (
     <section id="features" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6 space-y-2">
-        <MotionDiv
+        <MotionSpan
           initial={{ y: 50, opacity: 0 }}
           final={{ y: 0, opacity: 1 }}
           transition={{ duration: durationDefault }}
@@ -82,8 +82,8 @@ const Who = () => {
             />
             ?
           </h2>
-        </MotionDiv>
-        <MotionDiv
+        </MotionSpan>
+        <MotionSpan
           initial={{ y: 50, opacity: 0 }}
           final={{ y: 0, opacity: 1 }}
           transition={{ duration: durationDefault, delay: delayDude }}
@@ -100,7 +100,7 @@ const Who = () => {
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               I&apos;m really just a dude named Jay
             </p>
-            <MotionDiv
+            <MotionSpan
               initial={{ x: 50, opacity: 0 }}
               final={{ x: 0, opacity: 1 }}
               transition={{ duration: durationDefault, delay: delayShrug }}
@@ -109,9 +109,9 @@ const Who = () => {
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 ¯\_(ツ)_/¯
               </p>
-            </MotionDiv>
+            </MotionSpan>
           </div>
-        </MotionDiv>
+        </MotionSpan>
         <div
           style={{
             display: "flex",
@@ -119,7 +119,7 @@ const Who = () => {
             justifyContent: "center",
           }}
         >
-          <MotionDiv
+          <MotionSpan
             initial={{ y: 50, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
             transition={{ duration: durationDefault, delay: delayBut }}
@@ -128,8 +128,8 @@ const Who = () => {
             <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               but
             </p>
-          </MotionDiv>
-          <MotionDiv
+          </MotionSpan>
+          <MotionSpan
             initial={{ y: 100, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
             transition={{
@@ -141,8 +141,8 @@ const Who = () => {
             <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               .
             </p>
-          </MotionDiv>
-          <MotionDiv
+          </MotionSpan>
+          <MotionSpan
             initial={{ y: 100, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
             transition={{
@@ -154,8 +154,8 @@ const Who = () => {
             <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               .
             </p>
-          </MotionDiv>
-          <MotionDiv
+          </MotionSpan>
+          <MotionSpan
             initial={{ y: 100, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
             transition={{
@@ -167,7 +167,7 @@ const Who = () => {
             <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               .
             </p>
-          </MotionDiv>
+          </MotionSpan>
         </div>
         {...RevealFromTop({
           delay: delayNetwork,
@@ -202,7 +202,7 @@ const AnimatedLogicaHaus = ({
   const txt = "LogicaHaus";
   return (
     <span className=" text-center ml-2 relative">
-      <MotionDiv
+      <MotionSpan
         initial={{ opacity: 0 }}
         final={{ opacity: 1 }}
         transition={{
@@ -212,8 +212,8 @@ const AnimatedLogicaHaus = ({
         className="gradient-text pb-1"
       >
         {txt}
-      </MotionDiv>
-      <MotionDiv
+      </MotionSpan>
+      <MotionSpan
         initial={{ opacity: 1 }}
         final={{ opacity: 0 }}
         transition={{
@@ -223,7 +223,7 @@ const AnimatedLogicaHaus = ({
         className="text-muted-foreground flex flex-row absolute top-0 bottom-1 left-0 right-0"
       >
         {txt.split("").map((letter, index) => (
-          <MotionDiv
+          <MotionSpan
             key={index}
             initial={{ y: -100, opacity: 0 }}
             final={{ y: 0, opacity: 1 }}
@@ -236,9 +236,9 @@ const AnimatedLogicaHaus = ({
             className="text-muted-foreground"
           >
             {letter}
-          </MotionDiv>
+          </MotionSpan>
         ))}
-      </MotionDiv>
+      </MotionSpan>
     </span>
   );
 };
@@ -253,7 +253,7 @@ const RevealFromTop = ({
   children: JSX.Element | JSX.Element[];
 }): JSX.Element[] => {
   return [
-    <MotionDiv
+    <MotionSpan
       key={0}
       initial={{ height: 0, opacity: 0 }}
       final={{ height: "auto", opacity: 1 }}
@@ -264,14 +264,14 @@ const RevealFromTop = ({
       className="flex flex-col items-center space-y-4 text-center overflow-hidden"
     >
       {children}
-    </MotionDiv>,
-    <MotionDiv
+    </MotionSpan>,
+    <MotionSpan
       key={1}
       initial={{ opacity: 0 }}
       final={{ height: 0 }}
       transition={{ duration, delay }}
     >
       {children}
-    </MotionDiv>,
+    </MotionSpan>,
   ];
 };
