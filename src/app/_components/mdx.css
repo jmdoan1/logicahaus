@@ -1,0 +1,21 @@
+.mdx-image-container {
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.bordered-image {
+  border: 1px solid;
+}
+
+.max-width-image {
+  max-width: 600px;
+}
+
+.inverse {
+  filter: invert(100%);
+}
+
+code {
+  white-space: pre-wrap !important;
+}

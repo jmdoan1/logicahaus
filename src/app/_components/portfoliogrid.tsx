@@ -24,9 +24,10 @@ export const projects: Project[] = [
     marginTop: "5%",
   },
   {
-    name: "ScenePin",
-    slug: "scenepin",
-    scale: 1.45,
+    name: "Homesight",
+    slug: "homesight",
+    scale: 1.7,
+    rotate: 10,
   },
   // {
   //   name: "KeepAwayk",
@@ -38,6 +39,11 @@ export const projects: Project[] = [
     slug: "spirated",
     scale: 1.45,
     rotate: 10,
+  },
+  {
+    name: "ScenePin",
+    slug: "scenepin",
+    scale: 1.45,
   },
   {
     name: "Mileage Quest",
