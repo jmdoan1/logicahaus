@@ -28,7 +28,7 @@ export default function Page() {
   const imageNumber = useCallback(() => (count % 11) + 1, [count]);
 
   return (
-    <section className="bg-gradient-to-br from-background via-muted to-background py-12 md:py-24 lg:py-32">
+    <section className="bg-gradient-to-br from-background via-muted to-background py-24 lg:py-32">
       <div className="max-w-screen-2xl mx-auto px-4">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 block lg:hidden">
           HomeSight
@@ -52,19 +52,19 @@ export default function Page() {
 
         {/* Images for smaller screens (stacked or side-by-side at 50% each) */}
         <div className="block lg:hidden">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center">
             <Image
               src={`${baseAssetUrl}/${imageNumber()}-light.PNG`}
               alt="Preview of homesight app in light mode"
-              width={viewWidth * 0.3}
-              height={(viewWidth * 0.3 * 100) / 41}
+              width={viewWidth * 0.45}
+              height={(viewWidth * 0.45 * 100) / 41}
               className="object-contain"
             />
             <Image
               src={`${baseAssetUrl}/${imageNumber()}-dark.PNG`}
               alt="Preview of homesight app in dark mode"
-              width={viewWidth * 0.3}
-              height={(viewWidth * 0.3 * 100) / 41}
+              width={viewWidth * 0.45}
+              height={(viewWidth * 0.45 * 100) / 41}
               className="object-contain"
             />
           </div>
@@ -73,6 +73,24 @@ export default function Page() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-6 hidden lg:block">
           HomeSight
         </h2>
+        <div className="flex flex-row gap-3 w-[60%] max-w-[375px] justify-center justify-self-center my-5 mx-auto">
+          <video
+            src={`${baseAssetUrl}/onboarding.mp4`}
+            className="flex-1 min-w-0 rounded-xl md:rounded-3xl "
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <video
+            src={`${baseAssetUrl}/other.mp4`}
+            className="flex-1 min-w-0 rounded-3xl"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
         <p>
           Minim ut adipisicing enim. Adipisicing Lorem est dolor ullamco enim
           anim fugiat et consectetur commodo aute Lorem est. Irure est esse
