@@ -27,11 +27,26 @@ export default function Page() {
 
   const imageNumber = useCallback(() => (count % 11) + 1, [count]);
 
+  const features = [
+    "Client portal for database management",
+    "iOS and Android compatibility",
+    "Push notifications",
+    "Light and Dark color schemes",
+    "Animated onboarding screen",
+    "PDF displays and downloads",
+    "Forms with input validation",
+    "Form data sent to custom email lists",
+    "Custom web views with persisted logins",
+    "Signature capture",
+    "App rating prompt",
+    "Social sharing",
+  ];
+
   return (
     <section className="bg-gradient-to-br from-background via-muted to-background py-24 lg:py-32">
       <div className="max-w-screen-2xl mx-auto px-4">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 block lg:hidden">
-          HomeSight
+          HomeSight Mobile
         </h2>
 
         {/* Images for large screens (floated) */}
@@ -71,7 +86,7 @@ export default function Page() {
         </div>
 
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-6 hidden lg:block">
-          HomeSight
+          HomeSight Mobile
         </h2>
         <div className="flex flex-row gap-3 w-[60%] max-w-[375px] justify-center justify-self-center my-5 mx-auto">
           <video
@@ -92,68 +107,37 @@ export default function Page() {
           />
         </div>
         <p>
-          Minim ut adipisicing enim. Adipisicing Lorem est dolor ullamco enim
-          anim fugiat et consectetur commodo aute Lorem est. Irure est esse
-          Lorem dolor Lorem tempor exercitation sunt. Esse elit laborum proident
-          fugiat. Proident fugiat reprehenderit labore aliqua excepteur.
+          HomeSight is a non-profit organization that aims to provide a path to
+          homeownership for underprivelidged communities in the Seattle,
+          Washington area.
           <br />
           <br />
-          Ex culpa deserunt ex consectetur nulla ea eiusmod sint occaecat nisi
-          veniam adipisicing ex ea excepteur. Dolore enim officia Lorem magna
-          aliqua ullamco elit esse velit laboris labore. Velit consectetur dolor
-          Lorem. Proident est tempor aliqua velit nisi nostrud fugiat deserunt.
-          Ad anim velit reprehenderit voluptate cupidatat dolor eiusmod sit.
-          <br />
-          <br />
-          Aliquip eu duis eu culpa duis ea nostrud tempor. Dolor elit laborum
-          incididunt pariatur cupidatat in sint veniam enim occaecat enim dolore
-          quis tempor Lorem. Sunt eiusmod anim enim quis fugiat culpa ipsum.
-          Minim pariatur duis dolor minim ad nulla. Exercitation sit enim elit
-          culpa nisi eiusmod aliquip exercitation exercitation tempor. Aliqua
-          laboris in amet enim velit do consequat consectetur.
-          <br />
-          <br />
-          Nostrud consectetur nostrud excepteur non quis ipsum aute cupidatat
-          elit nostrud consectetur adipisicing deserunt occaecat. Ad fugiat quis
-          qui in culpa do consequat aliqua non ut esse ullamco. Occaecat tempor
-          ad aute consectetur ullamco officia mollit est irure. Aute ut in
-          reprehenderit aliqua laboris magna anim duis eiusmod qui quis. Sunt
-          dolore sint velit sit in nulla non. Dolor fugiat eiusmod culpa ex
-          ipsum ut occaecat laboris labore officia ullamco.
-          <br />
-          <br />
-          Minim ut adipisicing enim. Adipisicing Lorem est dolor ullamco enim
-          anim fugiat et consectetur commodo aute Lorem est. Irure est esse
-          Lorem dolor Lorem tempor exercitation sunt. Esse elit laborum proident
-          fugiat. Proident fugiat reprehenderit labore aliqua excepteur.
-          <br />
-          <br />
-          Ex culpa deserunt ex consectetur nulla ea eiusmod sint occaecat nisi
-          veniam adipisicing ex ea excepteur. Dolore enim officia Lorem magna
-          aliqua ullamco elit esse velit laboris labore. Velit consectetur dolor
-          Lorem. Proident est tempor aliqua velit nisi nostrud fugiat deserunt.
-          Ad anim velit reprehenderit voluptate cupidatat dolor eiusmod sit.
-          <br />
-          <br />
-          Aliquip eu duis eu culpa duis ea nostrud tempor. Dolor elit laborum
-          incididunt pariatur cupidatat in sint veniam enim occaecat enim dolore
-          quis tempor Lorem. Sunt eiusmod anim enim quis fugiat culpa ipsum.
-          Minim pariatur duis dolor minim ad nulla. Exercitation sit enim elit
-          culpa nisi eiusmod aliquip exercitation exercitation tempor. Aliqua
-          laboris in amet enim velit do consequat consectetur.
-          <br />
-          <br />
-          Nostrud consectetur nostrud excepteur non quis ipsum aute cupidatat
-          elit nostrud consectetur adipisicing deserunt occaecat. Ad fugiat quis
-          qui in culpa do consequat aliqua non ut esse ullamco. Occaecat tempor
-          ad aute consectetur ullamco officia mollit est irure. Aute ut in
-          reprehenderit aliqua laboris magna anim duis eiusmod qui quis. Sunt
-          dolore sint velit sit in nulla non. Dolor fugiat eiusmod culpa ex
-          ipsum ut occaecat laboris labore officia ullamco.
-          <br />
-          <br />
+          Built with Expo and React Native, this app serves to increase access
+          to information and boost community engagement.
         </p>
+        <FeatureList features={features} />
+        <h3 className="text-2xl font-bold my-5 text-center">Timeline</h3>
+        <p className="text-center text-muted-foreground">&lt; 1 month</p>
       </div>
     </section>
   );
 }
+
+const ListItem = ({ text }: { text: string }) => {
+  return (
+    <li className="flex flex-row gap-2 justify-center text-center">
+      ↣<p className="text-muted-foreground">{text}</p>↢
+    </li>
+  );
+};
+
+const FeatureList = ({ features }: { features: string[] }) => {
+  return (
+    <>
+      <h3 className="text-2xl font-bold my-5 text-center">Features</h3>
+      {features.map((feat, index) => (
+        <ListItem key={`feature-${index}`} text={feat} />
+      ))}
+    </>
+  );
+};

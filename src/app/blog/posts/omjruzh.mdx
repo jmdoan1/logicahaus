@@ -1,24 +1,26 @@
 - [1. Omjruzh](#1-omjruzh)
-  - [1.2. Consonant Mapping](#12-consonant-mapping)
-  - [1.3. Vowel Mapping](#13-vowel-mapping)
-  - [1.4. Special Rules \& Exceptions](#14-special-rules--exceptions)
-    - [1.4.1. Soft/Hard Variant Standardization](#141-softhard-variant-standardization)
-    - [1.4.2. The Letter C](#142-the-letter-c)
-    - [1.4.3. And Sometimes W](#143-and-sometimes-w)
-    - [1.4.4. Final-Word "E" Rule](#144-final-word-e-rule)
-    - [1.4.5. Past Tense "ed" Mapping](#145-past-tense-ed-mapping)
-    - [1.4.6. Adjustments for Initial Consonant Clusters](#146-adjustments-for-initial-consonant-clusters)
-    - [1.4.7. Nasal and Affricate Combinations](#147-nasal-and-affricate-combinations)
-    - [1.4.8. Phonotactic Smoothing with Schwa (ə)](#148-phonotactic-smoothing-with-schwa-ə)
-    - [1.4.9. Digraph and Phonetic Combination Rule](#149-digraph-and-phonetic-combination-rule)
-    - [1.4.10. Reversibility of Mappings](#1410-reversibility-of-mappings)
-    - [1.4.11. Orthographic Emphasis on Intended Pronunciation](#1411-orthographic-emphasis-on-intended-pronunciation)
-  - [1.5. Additional Considerations](#15-additional-considerations)
-    - [1.5.1. Silent Letters](#151-silent-letters)
-    - [1.5.2. Final "-le" Mapping](#152-final--le-mapping)
-  - [1.6. Transformation Process Overview](#16-transformation-process-overview)
-  - [1.7. Example Transformation: "english" → "omjruzh"](#17-example-transformation-english--omjruzh)
-  - [1.8. Summary](#18-summary)
+- [2. Background](#2-background)
+  - [2.1. Consonant Mapping](#21-consonant-mapping)
+  - [2.2. Vowel Mapping](#22-vowel-mapping)
+  - [2.3. Special Rules \& Exceptions](#23-special-rules--exceptions)
+    - [2.3.1. Silent letters](#231-silent-letters)
+    - [2.3.2. Soft/Hard Variant Standardization](#232-softhard-variant-standardization)
+    - [2.3.3. The Letter C](#233-the-letter-c)
+    - [2.3.4. And Sometimes W](#234-and-sometimes-w)
+    - [2.3.5. Final-Word "E" Rule](#235-final-word-e-rule)
+    - [2.3.6. Past Tense "ed" Mapping](#236-past-tense-ed-mapping)
+    - [2.3.7. Adjustments for Initial Consonant Clusters](#237-adjustments-for-initial-consonant-clusters)
+    - [2.3.8. Nasal and Affricate Combinations](#238-nasal-and-affricate-combinations)
+    - [2.3.9. Phonotactic Smoothing with Schwa (ə)](#239-phonotactic-smoothing-with-schwa-ə)
+    - [2.3.10. Digraph and Phonetic Combination Rule](#2310-digraph-and-phonetic-combination-rule)
+    - [2.3.11. Reversibility of Mappings](#2311-reversibility-of-mappings)
+    - [2.3.12. Orthographic Emphasis on Intended Pronunciation](#2312-orthographic-emphasis-on-intended-pronunciation)
+  - [2.4. Additional Considerations](#24-additional-considerations)
+    - [2.4.1. Silent Letters](#241-silent-letters)
+    - [2.4.2. Final "-le" Mapping](#242-final--le-mapping)
+  - [2.5. Transformation Process Overview](#25-transformation-process-overview)
+  - [2.6. Example Transformation: "english" → "omjruzh"](#26-example-transformation-english--omjruzh)
+  - [2.7. Summary](#27-summary)
 
 # 1. Omjruzh
 
@@ -26,11 +28,24 @@ Omjruzh is a **phonetic cipher** that systematically transforms English words by
 
 Once a word is transformed into its written form using these rules, it is then read aloud the way a native English speaker would read the resulting word. Thus, the final vocalization may not be a strict phonetic match to the original sounds.
 
-> **Note:** Silent letters (such as the **k** in _know_ or the **h** in _what_) are ignored in the transformation process.
+---
+
+# 2. Background
+
+I did most of this in my head when I was around 9 or 10. It began with the following logic
+
+1. The exact center of the alphabet falls between `M` and `N`
+2. `M` and `N` both act as "keys" that dictate which letters can be paired with them, e.g.:
+   1. `M`: `B`, `P`, `V`, `F`
+   2. `N`: `D`, `T`, `TH` (soft), `TH` (hard)
+
+It grew slightly from there but stayed in my head and never felt quite finished.
+
+This page serves as an attempt to finalize and document a full cipher 25 years later. With the help of ChatGPT, I have also been able to identify the technical explanation behind the logic.
 
 ---
 
-## 1.2. Consonant Mapping
+## 2.1. Consonant Mapping
 
 Each consonant is replaced by its “opposite” according to its place or manner of articulation. All mappings are reversible:
 
@@ -66,7 +81,7 @@ Each consonant is replaced by its “opposite” according to its place or manne
 
 ---
 
-## 1.3. Vowel Mapping
+## 2.2. Vowel Mapping
 
 The vowels are remapped based on their articulatory features. The mappings are reversible:
 
@@ -81,9 +96,13 @@ The vowels are remapped based on their articulatory features. The mappings are r
 
 ---
 
-## 1.4. Special Rules & Exceptions
+## 2.3. Special Rules & Exceptions
 
-### 1.4.1. Soft/Hard Variant Standardization
+### 2.3.1. Silent letters
+
+Silent letters in english can be ignored, like the k in know, the b in crumb, the h in honest, etc, etc
+
+### 2.3.2. Soft/Hard Variant Standardization
 
 - The cipher **standardizes** soft and hard variants:
   - A soft **g** is always represented as **j**.
@@ -91,12 +110,12 @@ The vowels are remapped based on their articulatory features. The mappings are r
   - A soft **sh** is always rendered as **zh**.
   - _Hard and soft **th** (θ and /ð/) are preserved as indicated, with soft th represented as `dh`._
 
-### 1.4.2. The Letter C
+### 2.3.3. The Letter C
 
 - **c** is treated based on its pronunciation in the word (i.e., whether it sounds like /s/ or /k/).
 - There is no separate mapping for a “see” sound.
 
-### 1.4.3. And Sometimes W
+### 2.3.4. And Sometimes W
 
 In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w ↔ y**). This is because both **w** and **y** often function as semi-vowels in English and share similar phonetic roles in certain contexts. For example, in some positions **w** can carry a vowel-like quality (as in the "oo" sound), much like **y** can represent a vowel sound (as in "happy"). By mapping **w** to **y** (and vice versa), we maintain a balanced, reversible system that mirrors the similar articulatory characteristics of these letters. This reversible treatment ensures that when a word is transformed, a **w** in the original may become a **y** in the cipher (and vice versa), preserving both the sound and the intended natural reading by an English speaker.
 
@@ -104,19 +123,19 @@ In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w 
 - When **w** is pronounced like “oo,” it remains as **w** in writing but is vocalized accordingly.
 - **Example:** _any_ → _amw_ (pronounced “amoo”).
 
-### 1.4.4. Final-Word "E" Rule
+### 2.3.5. Final-Word "E" Rule
 
 - If an **e** comes immediately after a consonant at the end of a word and solely modifies the preceding vowel’s sound, it is retained.
 - **Examples:**
   - _hose, hate, shove, pare_ keep the final **e**.
   - (For words like _shoe, bee, hoe_, where **e** is intrinsic to the vowel sound, treatment may vary.)
 
-### 1.4.5. Past Tense "ed" Mapping
+### 2.3.6. Past Tense "ed" Mapping
 
 - When translating past tense endings, the suffix **"ed"** (when pronounced as /d/ or /t/) is mapped to **"ob"** rather than to **"it."**
 - **Example:** A word ending in the past tense marker **"ed"** should have that ending transformed to **"ob"**.
 
-### 1.4.6. Adjustments for Initial Consonant Clusters
+### 2.3.7. Adjustments for Initial Consonant Clusters
 
 - **Br/Pr Adjustments:**
   - If an English word begins with **br** or **pr** and the transformation would yield an initial cluster like **dl** or **tl**, the **r** is retained.
@@ -125,18 +144,18 @@ In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w 
   - Similarly, if a word begins with **gr**, the transformation will preserve the **r** (resulting in an output where **gr** → **jr**, not just **j**).
   - This is analogous to the handling of words starting with **br** or **pr**.
 
-### 1.4.7. Nasal and Affricate Combinations
+### 2.3.8. Nasal and Affricate Combinations
 
 - For combinations such as **ng, nk, nj,** or **nch**, if the rules would otherwise produce clusters like **mj, mch, mg,** or **mk**, the original nasal (**n**) is preserved.
 
-### 1.4.8. Phonotactic Smoothing with Schwa (ə)
+### 2.3.9. Phonotactic Smoothing with Schwa (ə)
 
 - If the transformed word contains awkward or hard-to-pronounce clusters, insert a schwa (ə) to ease pronunciation.
 - **Examples:**
   - _brat_ might transform to _dlap_, pronounced “dəlap.”
   - _bank_ might become _damch_, pronounced “daməch.”
 
-### 1.4.9. Digraph and Phonetic Combination Rule
+### 2.3.10. Digraph and Phonetic Combination Rule
 
 - Because this is a phonetic cipher, transformation is based on sound rather than strict letter sequences:
   - **"ti" in _station_:**
@@ -144,7 +163,7 @@ In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w 
   - **"si" in _asia_:**
     - When “si” in a word like _asia_ is pronounced with a hard “sh” sound, it is rendered as a hard **sh**.
 
-### 1.4.10. Reversibility of Mappings
+### 2.3.11. Reversibility of Mappings
 
 - **Important:** All mappings are reversible. For example:
   - **m ↔ n**
@@ -153,7 +172,7 @@ In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w 
   - **o ↔ e** (with **o → e** and **e → o**)
 - This ensures that the cipher can be used both to encode and decode words consistently.
 
-### 1.4.11. Orthographic Emphasis on Intended Pronunciation
+### 2.3.12. Orthographic Emphasis on Intended Pronunciation
 
 - When appropriate, the spelling of the translated word may include extra letters to emphasize the intended pronunciation.
   - **Examples:**
@@ -164,21 +183,21 @@ In this omjruzh, the letter **w** is treated as reversible with **y** (i.e. **w 
 
 ---
 
-## 1.5. Additional Considerations
+## 2.4. Additional Considerations
 
-### 1.5.1. Silent Letters
+### 2.4.1. Silent Letters
 
 - **Silent letters are ignored.**
   - For instance, the **k** in _know_ and the **h** in _what_ are not considered in the transformation.
 
-### 1.5.2. Final "-le" Mapping
+### 2.4.2. Final "-le" Mapping
 
 - If a word ends in **-le** (pronounced /əl/, as in _little_), it maps to **ir**.
   - **Example:** _little_ → _ruppir_
 
 ---
 
-## 1.6. Transformation Process Overview
+## 2.5. Transformation Process Overview
 
 When converting an English word using the cipher:
 
@@ -204,7 +223,7 @@ When converting an English word using the cipher:
 
 ---
 
-## 1.7. Example Transformation: "english" → "omjruzh"
+## 2.6. Example Transformation: "english" → "omjruzh"
 
 Let's walk through how the word **"english"** is transformed:
 
@@ -238,7 +257,7 @@ Let's walk through how the word **"english"** is transformed:
 
 ---
 
-## 1.8. Summary
+## 2.7. Summary
 
 This reversible phonetic cipher systematically transforms English words by swapping vowels and consonants according to defined rules:
 
