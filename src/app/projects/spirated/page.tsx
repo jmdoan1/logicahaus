@@ -1,11 +1,21 @@
+import {
+  FeatureList,
+  ProjectContainer,
+  ProjectContent,
+  ProjectHeader,
+} from "@/app/_components/project-templates";
+
 export default function Page() {
   const baseAssetUrl = "/assets/projects/spirated";
 
   return (
-    <section>
-      <h1 className="h1">Spirated</h1>
+    <ProjectContainer>
+      <ProjectHeader>Spirated</ProjectHeader>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={`${baseAssetUrl}/preview.png`} style={{ maxWidth: 800 }} />
+        <img
+          src={`${baseAssetUrl}/preview.png`}
+          style={{ width: "100%", maxWidth: 800 }}
+        />
       </div>
       <div
         style={{
@@ -17,42 +27,32 @@ export default function Page() {
           margin: 30,
         }}
       >
-        {/* <img
-          src={`${baseAssetUrl}/Screenshot1.png`}
-          style={{ flex: 1, objectFit: "contain" }}
-        /> */}
         <img
           src={`${baseAssetUrl}/Screenshot2.png`}
           style={{ flex: 2, objectFit: "contain" }}
         />
       </div>
       <br />
-      <h2 className="h2">Built in Expo</h2>
-      <br />
-      <h3 className="h3">Status: Alpha</h3>
-      <br />
-      <div style={{ textAlign: "center" }}>
-        <h3 className="h3">Features</h3>
+      <ProjectContent>
+        <h2 className="h2">Built in Expo</h2>
         <br />
-        ~ Mobile and web functionality ~
+        <h3 className="h3">Status: Alpha</h3>
         <br />
-        ~ Responsive design for all screen sizes ~
-        <br />
-        ~ Personal bios ~
-        <br />
-        ~ Ratings and reviews ~
-        <br />
-        ~ Comments and likes ~
-        <br />
-        ~ Recent activity feeds ~
-        <br />
-        ~ Location based search ~
-        <br />
-        ~ Interactive map views ~
-        <br />
-        ~ Interactive list views ~
-        <br />~ Image upload and editing ~
-      </div>
-    </section>
+        <FeatureList
+          features={[
+            "Mobile and web functionality",
+            "Responsive design for all screen sizes",
+            "Personal bios",
+            "Ratings and reviews",
+            "Comments and likes",
+            "Recent activity feeds",
+            "Location based search",
+            "Interactive map views",
+            "Interactive list views",
+            "Image upload and editing",
+          ]}
+        />
+      </ProjectContent>
+    </ProjectContainer>
   );
 }

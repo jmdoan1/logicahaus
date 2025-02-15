@@ -3,6 +3,7 @@ import List from "@/app/_components/list";
 import "./page.css";
 import {
   ProjectContainer,
+  ProjectContent,
   ProjectHeader,
   ProjectSectionHeader,
 } from "@/app/_components/project-templates";
@@ -47,7 +48,7 @@ export default function Page() {
         the same for your dashcam!
       </ProjectSectionHeader>
       <br />
-      <div className="max-w-[1000px] mx-auto">
+      <ProjectContent>
         <p className="text-center">
           <i>
             <b className="text-xl">
@@ -123,7 +124,7 @@ export default function Page() {
           uses Apple's CoreAnimation library add the overlays from stored
           location data after recording is finished
         </p>
-      </div>
+      </ProjectContent>
     </ProjectContainer>
   );
 }

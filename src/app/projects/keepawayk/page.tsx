@@ -1,10 +1,15 @@
 import NewTabLink from "@/app/_components/new-tab-link";
+import {
+  ProjectContainer,
+  ProjectContent,
+  ProjectHeader,
+} from "@/app/_components/project-templates";
 
 export default function Page() {
   const baseAssetUrl = "/assets/projects/keepawayk";
   return (
-    <section>
-      <h1 className="h1">KeepAwayk</h1>
+    <ProjectContainer>
+      <ProjectHeader>KeepAwayk</ProjectHeader>
 
       <div
         style={{
@@ -25,21 +30,26 @@ export default function Page() {
         />
       </div>
       <br />
-      <p>
-        <i>KeepAwayk</i> is a simple MacOS utility that keeps your mac awake
-        (while keeping pesky managers away). Users can modify how often an
-        action occurs and toggle which actions it will randomly perform,
-        including mouse movements, left clicks, right clicks, and key presses.
-        Activity can also be toggled on/off with the ⌘+Y hotkey.
-      </p>
-      <br />
-      <div style={{ textAlign: "center" }}>
-        <NewTabLink style={{}} href="https://github.com/jmdoan1/KeepAwayk">
-          <h3 className="h3">
-            <u>View on GitHub</u>
-          </h3>
-        </NewTabLink>
-      </div>
-    </section>
+      <ProjectContent>
+        <p>
+          <i>
+            <b>KeepAwayk</b>
+          </i>{" "}
+          is a simple MacOS utility that keeps your mac awake (while keeping
+          pesky managers away). Users can modify how often an action occurs and
+          toggle which actions it will randomly perform, including mouse
+          movements, left clicks, right clicks, and key presses. Activity can
+          also be toggled on/off with the ⌘+Y hotkey.
+        </p>
+        <br />
+        <div style={{ textAlign: "center" }}>
+          <NewTabLink style={{}} href="https://github.com/jmdoan1/KeepAwayk">
+            <h3 className="h3">
+              <u>View on GitHub</u>
+            </h3>
+          </NewTabLink>
+        </div>
+      </ProjectContent>
+    </ProjectContainer>
   );
 }

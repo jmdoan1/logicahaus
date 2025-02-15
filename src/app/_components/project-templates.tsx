@@ -6,7 +6,9 @@ interface SBSProps {
   title: string;
   description: string;
   features?: string[];
+  contributions?: string[];
   timeline?: string[];
+  lists?: { title: string; items: string[] }[];
   imageLeft: string;
   imageRight: string;
   altLeft: string;
@@ -19,7 +21,9 @@ export function SBSProject({
   title,
   description,
   features = [],
+  contributions = [],
   timeline = [],
+  lists = [],
   imageLeft,
   imageRight,
   imageRatio,
@@ -65,39 +69,51 @@ export function SBSProject({
           <Image
             src={imageLeft}
             alt={altLeft}
-            width={viewWidth * 0.45}
-            height={viewWidth * 0.45 * imageRatio}
+            width={viewWidth * 0.3}
+            height={viewWidth * 0.3 * imageRatio}
             className="object-contain"
           />
           <Image
             src={imageRight}
             alt={altRight}
-            width={viewWidth * 0.45}
-            height={viewWidth * 0.45 * imageRatio}
+            width={viewWidth * 0.3}
+            height={viewWidth * 0.3 * imageRatio}
             className="object-contain"
           />
         </div>
       </div>
 
       <ProjectHeader className="hidden lg:block">{title}</ProjectHeader>
-      {videos.length > 0 ? (
-        <div className="flex flex-row gap-3 w-[60%] max-w-[375px] justify-center justify-self-center my-5 mx-auto">
-          {videos.map((video, index) => (
-            <video
-              key={`video-${index}`}
-              src={video}
-              className="flex-1 min-w-0 max-w-[200px] rounded-xl md:rounded-3xl "
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-          ))}
-        </div>
-      ) : null}
-      <p className="whitespace-pre-wrap">{description}</p>
-      {features.length > 0 ? <FeatureList features={features} /> : null}
-      {timeline.length > 0 ? <Timeline items={timeline} /> : null}
+      <ProjectContent>
+        {videos.length > 0 ? (
+          <div className="flex flex-row gap-3 w-[60%] max-w-[375px] justify-center justify-self-center my-5 mx-auto">
+            {videos.map((video, index) => (
+              <video
+                key={`video-${index}`}
+                src={video}
+                className="flex-1 min-w-0 max-w-[200px] rounded-xl md:rounded-3xl "
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ))}
+          </div>
+        ) : null}
+        <p className="whitespace-pre-wrap">{description}</p>
+        {features.length > 0 ? <FeatureList features={features} /> : null}
+        {contributions.length > 0 ? (
+          <Contributions items={contributions} />
+        ) : null}
+        {timeline.length > 0 ? <Timeline items={timeline} /> : null}
+        {lists.length > 0
+          ? lists.map((list, index) =>
+              list.items.length > 0 ? (
+                <ProjectList key={`list-${index}`} {...list} />
+              ) : null
+            )
+          : null}
+      </ProjectContent>
     </ProjectContainer>
   );
 }
@@ -170,6 +186,20 @@ export const ProjectSectionHeader = ({
   );
 };
 
+export const ProjectContent = ({ children, className = "" }: ElementProps) => {
+  return (
+    <div
+      className={`
+        max-w-[1000px]
+        mx-auto
+        ${className}
+        `}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const ListItem = ({ text }: { text: string }) => {
   return (
     <li className="flex flex-row gap-2 justify-center text-center">
@@ -193,6 +223,42 @@ export const Timeline = ({ items }: { items: string[] }) => {
   return (
     <>
       <ProjectSectionHeader>Timeline</ProjectSectionHeader>
+      {items.map((item, index) => (
+        <ListItem key={`feature-${index}`} text={item} />
+      ))}
+    </>
+  );
+};
+
+export const Contributions = ({
+  items,
+  significant,
+}: {
+  items: string[];
+  significant?: boolean;
+}) => {
+  return (
+    <>
+      <ProjectSectionHeader>{`${
+        significant ? "Significant " : ""
+      }Contributions`}</ProjectSectionHeader>
+      {items.map((item, index) => (
+        <ListItem key={`feature-${index}`} text={item} />
+      ))}
+    </>
+  );
+};
+
+export const ProjectList = ({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) => {
+  return (
+    <>
+      <ProjectSectionHeader>{title}</ProjectSectionHeader>
       {items.map((item, index) => (
         <ListItem key={`feature-${index}`} text={item} />
       ))}

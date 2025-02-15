@@ -19,7 +19,6 @@ export default function Page() {
       altLeft="Preview of input form"
       altRight="Preview of share sheet"
       imageRatio={100 / 41}
-      // videos={[`${baseAssetUrl}/onboarding.mp4`, `${baseAssetUrl}/other.mp4`]}
     />
   );
 }
