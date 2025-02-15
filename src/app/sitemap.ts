@@ -1,5 +1,5 @@
-import { projects } from "./_components/portfoliogrid";
-import { getBlogPosts } from "./blog/utils";
+import { projects } from "./global";
+import { getBlogPosts } from "@/app/blog/utils";
 
 export const baseUrl = "https://www.logica.haus";
 
