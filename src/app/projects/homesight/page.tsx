@@ -1,6 +1,6 @@
 "use client";
 
-import SBSProject from "@/app/_components/project-templates";
+import { SBSProject } from "@/app/_components/project-templates";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Page() {
