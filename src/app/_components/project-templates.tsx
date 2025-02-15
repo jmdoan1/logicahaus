@@ -130,6 +130,7 @@ export const ProjectContainer = ({
   return (
     <section
       className={`
+        flex-1
         bg-gradient-to-br 
         from-background 
         via-muted 

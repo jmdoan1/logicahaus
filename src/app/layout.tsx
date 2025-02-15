@@ -8,7 +8,7 @@ import Footer from "@/app/_components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "LogicaHaus - Innovative Software Solutions",
   description:
     "One-man software development agency delivering cutting-edge digital solutions",

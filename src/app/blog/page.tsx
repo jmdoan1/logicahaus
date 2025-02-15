@@ -1,4 +1,8 @@
 import { BlogPosts } from "@/app/_components/posts";
+import {
+  ProjectContainer,
+  ProjectContent,
+} from "../_components/project-templates";
 
 export const metadata = {
   title: "Blog",
@@ -7,11 +11,13 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
-        Blog Posts
-      </h1>
-      <BlogPosts />
-    </section>
+    <ProjectContainer>
+      <ProjectContent>
+        <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
+          Blog Posts
+        </h1>
+        <BlogPosts />
+      </ProjectContent>
+    </ProjectContainer>
   );
 }
