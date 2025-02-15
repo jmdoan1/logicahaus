@@ -1,51 +1,5 @@
-"use client";
-
-import { JSX, useEffect } from "react";
-import {
-  AnimationDefinition,
-  HTMLMotionProps,
-  motion,
-  Target,
-  Transition,
-  useAnimation,
-  VariantLabels,
-} from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
-const MotionSpan = (
-  props: Omit<
-    HTMLMotionProps<"div">,
-    "ref" | "animate" | "initial" | "transition"
-  > & {
-    initial: boolean | VariantLabels | Target;
-    final: Omit<AnimationDefinition, "transition">;
-    transition: Transition;
-    element?: "div" | "span";
-  }
-) => {
-  const { initial, final, transition, className, ...rest } = props;
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start({ ...final, transition });
-    }
-  }, [controls, inView, final, transition]);
-
-  return (
-    <motion.span
-      ref={ref}
-      animate={controls}
-      initial={initial}
-      className={"flex items-center text-center " + className}
-      {...rest}
-    />
-  );
-};
+import { JSX } from "react";
+import MotionSpan from "./motion-span";
 
 const Who = () => {
   const durationDefault = 0.5;
@@ -97,19 +51,31 @@ const Who = () => {
               justifyContent: "center",
             }}
           >
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              I&apos;m really just a dude named Jay
-            </p>
             <MotionSpan
-              initial={{ x: 50, opacity: 0 }}
-              final={{ x: 0, opacity: 1 }}
-              transition={{ duration: durationDefault, delay: delayShrug }}
-              className="flex flex-col items-center space-y-4 text-center ml-2"
+              initial={{ x: 77.078125 / 2 }}
+              final={{ x: 0 }}
+              transition={{
+                duration: durationDefault - 0.1,
+                delay: delayShrug + 0.1,
+              }}
+              className="justify-center"
             >
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                ¯\_(ツ)_/¯
+                I&apos;m really just a dude named Jay
               </p>
             </MotionSpan>
+            <div>
+              <MotionSpan
+                initial={{ x: 77.078125 / 2 + 50, opacity: 0 }}
+                final={{ x: 0, opacity: 1 }}
+                transition={{ duration: durationDefault, delay: delayShrug }}
+                className="flex flex-col items-center space-y-4 text-center ml-2"
+              >
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  ¯\_(ツ)_/¯
+                </p>
+              </MotionSpan>
+            </div>
           </div>
         </MotionSpan>
         <div
