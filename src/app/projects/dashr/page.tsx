@@ -7,7 +7,6 @@ import {
   ProjectHeader,
   ProjectSectionHeader,
 } from "@/app/_components/project-templates";
-import Image from "next/image";
 
 export default function Page() {
   const baseAssetUrl = "/assets/projects/dashr";
@@ -58,9 +57,9 @@ export default function Page() {
           <br />
           <br />
           Turn your smartphone into a reliable dashcam with Dashr, designed to
-          keep you safe and capture every moment on the road. Whether you're
-          recording beautiful road trips, tracking incidents, or simply ensuring
-          peace of mind while driving, Dashr has you covered.
+          keep you safe and capture every moment on the road. Whether
+          you&apos;re recording beautiful road trips, tracking incidents, or
+          simply ensuring peace of mind while driving, Dashr has you covered.
           <br />
           <br />
         </p>
@@ -77,7 +76,7 @@ export default function Page() {
           </li>
           <li>
             <b>Keep the Party Going:</b> Dashr records videos with audio without
-            interfering with your music, whether you're listening with the
+            interfering with your music, whether you&apos;re listening with the
             device, over bluetooth, or through CarPlay
           </li>
           <li>
@@ -121,7 +120,7 @@ export default function Page() {
           <i>
             <b> This version</b> (built in 2024)
           </i>{" "}
-          uses Apple's CoreAnimation library add the overlays from stored
+          uses Apple&apos;s CoreAnimation library add the overlays from stored
           location data after recording is finished
         </p>
       </ProjectContent>

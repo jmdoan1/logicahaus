@@ -23,7 +23,7 @@ export default function Page() {
         <h2 className="h2">Feeling smart? Prove it with Trivia Pal!</h2>
         <br />
         Trivia Pal is the ultimate quiz and trivia app designed to test your
-        knowledge across a wide range of categories. Whether you're a solo
+        knowledge across a wide range of categories. Whether you&apos;re a solo
         player or love to challenge your friends, Trivia Pal has something for
         everyone.
         <br />
@@ -65,13 +65,13 @@ export default function Page() {
           <li>And many more!</li>
         </ul>
         <br />
-        <b>Why Trivia Pal?</b> Trivia Pal isn't just a game; it's a fun and
-        engaging way to learn new facts and challenge your brain. Whether you're
-        prepping for a trivia night or just want to have some fun, Trivia Pal is
-        your go-to app for trivia entertainment.
+        <b>Why Trivia Pal?</b> Trivia Pal isn&apos;t just a game; it&apos;s a
+        fun and engaging way to learn new facts and challenge your brain.
+        Whether you&apos;re prepping for a trivia night or just want to have
+        some fun, Trivia Pal is your go-to app for trivia entertainment.
         <br />
         <br />
-        Download Trivia Pal today and start proving your smarts!"
+        Download Trivia Pal today and start proving your smarts!
         <br />
         <h2 className="h2">Development Timeline</h2>
         <br />

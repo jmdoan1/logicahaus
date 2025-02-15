@@ -39,8 +39,8 @@ const CallToAction = () => {
               Ready to Get Started?
             </h2>
             <p className="max-w-[900px] text-primary-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Let's turn your vision into reality. Contact us today for a free
-              consultation.
+              Let&apos;s turn your vision into reality. Contact us today for a
+              free consultation.
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center mt-6">

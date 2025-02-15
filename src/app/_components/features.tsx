@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { Code, Zap, Shield, Sparkles } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -31,7 +31,17 @@ const features = [
   },
 ];
 
-const FeatureCard = ({ icon, title, description, index }) => {
+const FeatureCard = ({
+  icon,
+  title,
+  description,
+  index,
+}: {
+  icon: ReactNode;
+  title: string;
+  description: string;
+  index: number;
+}) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,

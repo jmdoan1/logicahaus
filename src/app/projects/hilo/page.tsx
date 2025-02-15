@@ -1,7 +1,4 @@
-import {
-  ProjectContainer,
-  SBSProject,
-} from "@/app/_components/project-templates";
+import { SBSProject } from "@/app/_components/project-templates";
 
 export default function Page() {
   const baseAssetUrl = "/assets/projects/hilo";

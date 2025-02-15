@@ -1,4 +1,3 @@
-import List, { NestedList } from "@/app/_components/list";
 import { SBSProject } from "@/app/_components/project-templates";
 
 export default function Page() {

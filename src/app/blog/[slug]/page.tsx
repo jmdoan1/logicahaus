@@ -15,7 +15,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function generateMetadata({ params }: any) {
   const p = await params;
   const post = getBlogPosts().find((post) => post.slug === p.slug);
   if (!post) {
@@ -56,7 +57,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Blog({ params }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function Blog({ params }: any) {
   const p = await params;
   const post = getBlogPosts().find((post) => post.slug === p.slug);
 
