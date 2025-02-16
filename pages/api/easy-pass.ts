@@ -15,7 +15,7 @@ export default async function handler(
     );
 
     // Execute the Python script
-    exec(`python3.9 ${scriptPath}`, (error, stdout, stderr) => {
+    exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {
       if (error) {
         console.error("Error running Python script:", error);
         return res.status(500).json({ error: "Failed to generate phrase" });
