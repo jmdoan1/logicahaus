@@ -12,7 +12,7 @@ export default async function handler(
       : req.socket.remoteAddress || "Unknown IP";
 
   try {
-    const geoData = await fetch(`https://ipapi.co/${ip}/json/`).then((r) =>
+    const geoData = await fetch(`http://ip-api.com/json/${ip}`).then((r) =>
       r.json()
     );
     res.status(200).json({ ip, geoData });
