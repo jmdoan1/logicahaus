@@ -3,6 +3,7 @@ import {
   ProjectContent,
   ProjectHeader,
 } from "../_components/project-templates";
+import IPChecker from "./ip";
 import PasswordGenerator from "./password-generator";
 
 export default function Page() {
@@ -14,6 +15,7 @@ export default function Page() {
       </p>
       <ProjectContent>
         <PasswordGenerator />
+        <IPChecker />
       </ProjectContent>
     </ProjectContainer>
   );
