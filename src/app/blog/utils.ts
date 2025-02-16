@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
 
-type Metadata = {
+export type BlogMetadata = {
   title: string;
   publishedAt: string;
+  updatedAt?: string;
   summary: string;
   image?: string;
   hidden?: string;
@@ -15,16 +16,16 @@ function parseFrontmatter(fileContent: string) {
   const frontMatterBlock = match![1];
   const content = fileContent.replace(frontmatterRegex, "").trim();
   const frontMatterLines = frontMatterBlock.trim().split("\n");
-  const metadata: Partial<Metadata> = {};
+  const metadata: Partial<BlogMetadata> = {};
 
   frontMatterLines.forEach((line) => {
     const [key, ...valueArr] = line.split(": ");
     let value = valueArr.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
+    metadata[key.trim() as keyof BlogMetadata] = value;
   });
 
-  return { metadata: metadata as Metadata, content };
+  return { metadata: metadata as BlogMetadata, content };
 }
 
 function getMDXFiles(dir: string) {

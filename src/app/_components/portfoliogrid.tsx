@@ -15,7 +15,7 @@ interface Props {
 
 export default function PortfolioGrid({ ignoreProject }: Props) {
   return (
-    <section id="projects" className="scroll-mt-16 sm:scroll-mt-20">
+    <section id="projects">
       <ProjectContainer>
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
           PORTFOLIO

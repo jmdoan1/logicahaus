@@ -91,6 +91,10 @@ body > div {
   }
 }
 
+section {
+  @apply scroll-mt-16 sm:scroll-mt-20;
+}
+
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-muted-foreground to-purple-600;
 }
