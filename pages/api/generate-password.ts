@@ -9,7 +9,8 @@ export default async function handler(
     pythonPath:
       process.env.NODE_ENV === "development"
         ? process.env.PYTHON_PATH
-        : "/opt/buildhome/python3.12/bin/python3",
+        : // : "/opt/buildhome/python3.12/bin/python3",
+          undefined,
   })
     .then((results) => {
       const phraseData = JSON.parse(results[0]);
