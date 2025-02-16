@@ -13,7 +13,7 @@ export default function Page() {
       <p className="text-center text-muted-foreground mb-14">
         A collection of tools, utilities, and fun things to play around with
       </p>
-      <ProjectContent>
+      <ProjectContent className="flex flex-col gap-10">
         <PasswordGenerator />
         <IPChecker />
       </ProjectContent>
