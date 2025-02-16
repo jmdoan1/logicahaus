@@ -37,13 +37,15 @@ const Header = () => {
           <Link href="/" className="flex items-center">
             <span className="text-2xl font-bold gradient-text">LogicaHaus</span>
           </Link>
-          <nav className={`hidden md:flex space-x-8`}>
+          <nav className={`hidden md:flex sm:space-x-6 lg:space-x-8`}>
             {links(isHome).map((link, index) =>
               link === undefined ? null : (
                 <Link
                   key={index}
                   href={link.link}
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className={`text-sm font-medium hover:text-primary transition-colors ${
+                    link.title === "Play" ? "gradient-text-reverse" : ""
+                  }`}
                 >
                   {link.title}
                 </Link>
@@ -52,7 +54,6 @@ const Header = () => {
           </nav>
           <div className="flex items-center space-x-4">
             <ModeToggle />
-            <Button className="hidden md:inline-flex">Get Started</Button>
             <Button
               variant="ghost"
               size="icon"
@@ -71,7 +72,7 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <nav className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-            {links.map((link, index) =>
+            {links(isHome).map((link, index) =>
               link === undefined ? null : (
                 <Link
                   key={index}

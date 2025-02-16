@@ -95,6 +95,10 @@ body > div {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-muted-foreground to-purple-600;
 }
 
+.gradient-text-reverse {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-muted-foreground;
+}
+
 .hover-lift {
   @apply transition-transform duration-300 hover:-translate-y-1;
 }
