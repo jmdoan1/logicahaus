@@ -1,3 +1,17 @@
+export const playgroundSlugs = [
+  { name: "Cute Password Maker", link: "/cute-password-maker" },
+  {
+    name: "Easy Password Generator",
+    hash: "#easy-password-generator",
+    link: "/easy-password-generator",
+  },
+  { name: "My Ip Address", hash: "#my-ip-address", link: "/my-ip-address" },
+  {
+    name: "Qr Code Generator",
+    hash: "#qr-code-generator",
+    link: "/qr-code-generator",
+  },
+];
 export function randomTwoDigitNumberString(): string {
   let result = Math.floor(Math.random() * 100).toString();
   if (result.length < 2) result = `0${result}`;
