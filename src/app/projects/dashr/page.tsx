@@ -26,11 +26,6 @@ export default function Page() {
         />
       </div>
       <br />
-      <img
-        alt="App Icon"
-        src={`${baseAssetUrl}/preview.png`}
-        className="min-w-0"
-      />
       <iframe
         width={"100%"}
         style={{
