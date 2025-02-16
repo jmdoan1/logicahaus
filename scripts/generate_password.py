@@ -3,7 +3,6 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 from nltk.corpus import wordnet as wn
 import random
-import sys
 import json
 
 def get_random_word(word_type):
@@ -25,7 +24,6 @@ def random_number():
     else:
         return result
 
-
 def generate_phrase():
     """Generate a phrase in the format 'adjective1 adjective2 noun'."""
     adjective1 = get_random_word(wn.ADJ).lower()
@@ -36,7 +34,5 @@ def generate_phrase():
     return f"{adjective1}{adjective2}{noun}{randNumber}"
 
 if __name__ == '__main__':
-    # nltk.download('wordnet')
-    # nltk.download('omw-1.4')
     phrase = generate_phrase()
     print(json.dumps({"phrase": phrase}))
