@@ -93,14 +93,6 @@ export default function Page() {
               <u>VIEW IN APP STORE</u>
             </h2>
           </NewTabLink>
-          <NewTabLink
-            style={{ textAlign: "center" }}
-            href="https://play.google.com/store/apps/details?id=com.doanworks.scenepin"
-          >
-            <h2 className="h3">
-              <u>VIEW IN GOOGLE PLAY STORE</u>
-            </h2>
-          </NewTabLink>
         </div>
       </ProjectContent>
     </ProjectContainer>

@@ -100,3 +100,11 @@ export const projects: Project[] = [
     scale: 1.7,
   },
 ];
+
+export const links = (isHome: boolean) => [
+  { title: "Projects", link: isHome ? "#projects" : "/projects" },
+  isHome ? { title: "Features", link: "/#features" } : undefined,
+  { title: "About", link: "/#about" },
+  isHome ? { title: "Testimonials", link: "/#testimonials" } : undefined,
+  { title: "Contact", link: isHome ? "#contact" : "/contact" },
+];

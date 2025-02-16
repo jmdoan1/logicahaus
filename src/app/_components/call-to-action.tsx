@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button } from "@/app/_components/ui/button";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const CallToAction = () => {
   const controls = useAnimation();
@@ -25,7 +26,7 @@ const CallToAction = () => {
   return (
     <section
       id="contact"
-      className="w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground"
+      className="w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
@@ -44,17 +45,22 @@ const CallToAction = () => {
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center mt-6">
-            <Button size="lg" variant="secondary">
-              Schedule a Call
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-            >
-              Learn More
-            </Button>
+            <Link href={"/contact"}>
+              <Button size="lg" variant="secondary">
+                Get in touch
+              </Button>
+            </Link>
           </div>
+          {/* <Link
+            className="underline text-xs"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={
+              "https://letmegooglethat.com/?q=stupid+fuckin+agencies+I%27ll+regret+hiring"
+            }
+          >
+            Browse our network of partner agencies
+          </Link> */}
         </motion.div>
       </div>
     </section>

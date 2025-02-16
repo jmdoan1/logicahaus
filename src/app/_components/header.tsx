@@ -1,14 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/app/_components/ui/button";
 import { Menu, X } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import { usePathname } from "next/navigation";
+import { links } from "../global";
 
 const Header = () => {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const isHome = useMemo(() => pathname === "/", [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,24 +38,17 @@ const Header = () => {
             <span className="text-2xl font-bold gradient-text">LogicaHaus</span>
           </Link>
           <nav className={`hidden md:flex space-x-8`}>
-            <Link
-              href="#features"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Testimonials
-            </Link>
-            <Link
-              href="#contact"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Contact
-            </Link>
+            {links(isHome).map((link, index) =>
+              link === undefined ? null : (
+                <Link
+                  key={index}
+                  href={link.link}
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {link.title}
+                </Link>
+              )
+            )}
           </nav>
           <div className="flex items-center space-x-4">
             <ModeToggle />
@@ -73,24 +71,18 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <nav className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-            <Link
-              href="#features"
-              className="block px-3 py-2 text-base font-medium hover:bg-muted rounded-md"
-            >
-              Features
-            </Link>
-            <Link
-              href="#testimonials"
-              className="block px-3 py-2 text-base font-medium hover:bg-muted rounded-md"
-            >
-              Testimonials
-            </Link>
-            <Link
-              href="#contact"
-              className="block px-3 py-2 text-base font-medium hover:bg-muted rounded-md"
-            >
-              Contact
-            </Link>
+            {links.map((link, index) =>
+              link === undefined ? null : (
+                <Link
+                  key={index}
+                  href={link.link}
+                  className="block px-3 py-2 text-base font-medium hover:bg-muted rounded-md"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.title}
+                </Link>
+              )
+            )}
           </nav>
         </div>
       )}

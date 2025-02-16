@@ -7,6 +7,7 @@ import "./portfolio-grid.css";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
+import { ProjectContainer } from "./project-templates";
 
 interface Props {
   ignoreProject?: string;
@@ -14,28 +15,30 @@ interface Props {
 
 export default function PortfolioGrid({ ignoreProject }: Props) {
   return (
-    <section className="bg-gradient-to-br from-background via-muted to-background py-12 md:py-24 lg:py-32">
-      <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-        PORTFOLIO
-      </h2>
-      <div className="grid container mx-auto px-4 sm:px-6 lg:px-8 ">
-        <ProjectCard
-          index={0}
-          key={"project-0"}
-          name="THIS WEBSITE"
-          slug={githubUrl}
-          scale={1}
-        />
-        {projects
-          .filter((x) => x.slug !== ignoreProject)
-          .map((proj, index) => (
-            <ProjectCard
-              index={index + 1}
-              key={`project-${index + 1}`}
-              {...proj}
-            />
-          ))}
-      </div>
+    <section id="projects" className="scroll-mt-16 sm:scroll-mt-20">
+      <ProjectContainer>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+          PORTFOLIO
+        </h2>
+        <div className="grid container mx-auto px-4 sm:px-6 lg:px-8 ">
+          <ProjectCard
+            index={0}
+            key={"project-0"}
+            name="THIS WEBSITE"
+            slug={githubUrl}
+            scale={1}
+          />
+          {projects
+            .filter((x) => x.slug !== ignoreProject)
+            .map((proj, index) => (
+              <ProjectCard
+                index={index + 1}
+                key={`project-${index + 1}`}
+                {...proj}
+              />
+            ))}
+        </div>
+      </ProjectContainer>
     </section>
   );
 }
