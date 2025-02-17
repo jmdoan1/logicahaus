@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   function isValidDictionaryWord(word: string): boolean {
-    const testWord = word.toLowerCase():
+    const testWord = word.toLowerCase();
     // no numbers or special characters
     if (!/^[a-z]+$/.test(testWord)) return false;
 
@@ -24,15 +24,14 @@ export default async function handler(
   }
 
   // Avoid getting roman numerals in adjective slots
-function hasNonRomanLetter(word: string): boolean {
+  function hasNonRomanLetter(word: string): boolean {
+    // Remove all Roman-numeral letters (case-insensitive)
+    const stripped = word.replace(/[ivxlcdm]/gi, "");
 
-  // Remove all Roman-numeral letters (case-insensitive)
-  const stripped = word.replace(/[ivxlcdm]/gi, "");
-
-  // If there's still at least one letter left, it means the word had
-  // at least one letter that wasn't I/V/X/L/C/D/M.
-  return /[a-zA-Z]/.test(stripped);
-}
+    // If there's still at least one letter left, it means the word had
+    // at least one letter that wasn't I/V/X/L/C/D/M.
+    return /[a-zA-Z]/.test(stripped);
+  }
 
   function capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
