@@ -47,11 +47,7 @@ const Header = () => {
                   key={index}
                   href={link.link}
                   className={`text-sm font-medium hover:text-primary transition-colors ${
-                    link.title === "Play"
-                      ? // ? resolvedTheme === "dark"
-                        `gradient-text-reverse gradient-animated`
-                      : // : `gradient-text gradient-animated`
-                        ""
+                    link.title === "Play" ? "gradient-text-reverse" : ""
                   }`}
                 >
                   {link.title}
