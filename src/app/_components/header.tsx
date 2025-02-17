@@ -7,10 +7,8 @@ import { Menu, X } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { links } from "../global";
-import { useTheme } from "next-themes";
 
 const Header = () => {
-  const { resolvedTheme } = useTheme();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
