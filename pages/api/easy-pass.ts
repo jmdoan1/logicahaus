@@ -8,6 +8,7 @@ export default async function handler(
 ) {
   function isValidDictionaryWord(word: string): boolean {
     const testWord = word.toLowerCase();
+
     // no numbers or special characters
     if (!/^[a-z]+$/.test(testWord)) return false;
 
