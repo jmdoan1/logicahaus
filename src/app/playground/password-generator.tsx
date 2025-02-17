@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/app/_components/ui/button";
 import {
   Card,
@@ -12,7 +13,7 @@ import {
 } from "@/app/_components/ui/card";
 import { Copy, CopyCheck, CopyX } from "lucide-react";
 import { Input } from "@/app/_components/ui/input";
-import { copyToClipboard, generateEasyPassword } from "./util";
+import { copyToClipboard } from "./util";
 
 export default function PasswordGenerator({ cute }: { cute?: boolean }) {
   const [password, setPassword] = useState("");
@@ -22,16 +23,28 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
 
   useEffect(() => {
     if (copyStatus !== "none") {
-      setTimeout(() => setCopyStatus("none"), 3000);
+      const timer = setTimeout(() => setCopyStatus("none"), 3000);
+      return () => clearTimeout(timer);
     }
   }, [copyStatus]);
 
-  async function generate() {
-    const result = await generateEasyPassword();
-    setPassword(result);
+  const generatePasswordMutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch("/api/easy-pass");
+      if (!res.ok) throw new Error("Failed to fetch password");
+      const data = await res.json();
+      return data.phrase as string;
+    },
+    onSuccess: (phrase) => {
+      setPassword(phrase);
+    },
+  });
+
+  function handleGenerate() {
+    generatePasswordMutation.mutate();
   }
 
-  async function copy() {
+  async function handleCopy() {
     const success = await copyToClipboard(password);
     setCopyStatus(success ? "success" : "fail");
   }
@@ -39,7 +52,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
   return (
     <section id="easy-password-generator">
       {cute ? (
-        <Card className="w-full  mx-auto">
+        <Card className="w-full mx-auto">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-primary">
               🔐 Cute Password Generator 🐱
@@ -60,7 +73,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={copy}
+                onClick={handleCopy}
                 className={`absolute right-0 top-0 h-full ${
                   copyStatus === "success"
                     ? "text-green-500 hover:text-green-600"
@@ -79,7 +92,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
               </Button>
             </div>
             <Button
-              onClick={generate}
+              onClick={handleGenerate}
               className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-2 px-4 rounded-full transition-all duration-200 transform hover:scale-105"
             >
               🎨 Generate Cute Password 🦄
@@ -90,7 +103,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
           </CardFooter>
         </Card>
       ) : (
-        <Card className="w-full  mx-auto">
+        <Card className="w-full mx-auto">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold">
               Easy Password Generator
@@ -111,7 +124,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={copy}
+                onClick={handleCopy}
                 className={`absolute right-0 top-0 h-full ${
                   copyStatus === "success"
                     ? "text-green-500 hover:text-green-600"
@@ -130,7 +143,7 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
               </Button>
             </div>
             <Button
-              onClick={generate}
+              onClick={handleGenerate}
               className="w-full text-white font-bold py-2 px-4 rounded-full transition-all duration-200 transform hover:scale-105"
             >
               Generate Password
