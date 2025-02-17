@@ -24,11 +24,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <WebVitals />
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
+          <div className="min-h-[100vh]">
+            <WebVitals />
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </div>
         </Providers>
       </body>
     </html>

@@ -3,19 +3,13 @@
 import { useEffect, useState } from "react";
 import QRCode from "qrcode";
 import { Copy, Download } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/app/_components/ui/card";
 import { Button } from "@/app/_components/ui/button";
 import { Input } from "@/app/_components/ui/input";
 import { toast } from "@/app/_hooks/use-toast";
+import PlayGroundCard from "./_components/playground-card";
+import { codeLinkBase } from "../global";
 
-export default function QRCodeGenerator() {
+export default function QRCodeGenerator({ inline }: { inline?: boolean }) {
   const [inputText, setInputText] = useState("");
   const [qrCodeImage, setQrCodeImage] = useState("");
 
@@ -71,16 +65,15 @@ export default function QRCodeGenerator() {
 
   return (
     <section id="qr-code-generator">
-      <Card className="w-full mx-auto">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">
-            QR Code Generator
-          </CardTitle>
-          <CardDescription>
-            Generate QR codes for any text or URL
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
+      <PlayGroundCard
+        title="QR Code Generator"
+        description="Generate QR codes for any text or URL"
+        footerText="Scan and share with ease! 📲"
+        codeUrl={`${codeLinkBase}/src/app/playground/qr.tsx`}
+        navUrl={`/playground${inline ? "/" : "#"}qr-code-generator`}
+        inline={inline}
+      >
+        <div className="space-y-6">
           <Input
             type="text"
             value={inputText}
@@ -90,13 +83,11 @@ export default function QRCodeGenerator() {
           />
           {qrCodeImage && (
             <div className="flex flex-col items-center gap-4">
-              {/* <div className="bg-white p-1 rounded-lg shadow-md"> */}
               <img
                 src={qrCodeImage}
                 alt="Generated QR Code"
                 className="rounded-lg shadow-md"
               />
-              {/* </div> */}
               <div className="flex gap-2">
                 <Button onClick={copyImage} variant="outline" size="sm">
                   <Copy className="w-4 h-4 mr-2" />
@@ -109,11 +100,8 @@ export default function QRCodeGenerator() {
               </div>
             </div>
           )}
-        </CardContent>
-        <CardFooter className="text-center text-sm text-muted-foreground">
-          Scan and share with ease! 📲
-        </CardFooter>
-      </Card>
+        </div>
+      </PlayGroundCard>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 export const githubAccount = "https://github.com/jmdoan1";
 export const githubUrl = `${githubAccount}/logicahaus`;
+export const codeLinkBase = `${githubUrl}/blob/main/`;
 
 export interface Project {
   name: string;

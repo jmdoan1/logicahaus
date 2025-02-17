@@ -13,7 +13,7 @@ import { playgroundSlugs } from "./util";
 export default function Page() {
   return (
     <ProjectContainer>
-      <ProjectHeader className="mb-2">Playground</ProjectHeader>
+      <ProjectHeader className="mb-3">Playground</ProjectHeader>
       <p className="text-center text-muted-foreground mb-6">
         A collection of tools, utilities, and fun things to play around with
       </p>
@@ -33,10 +33,18 @@ export default function Page() {
             ))}
         </ul>
       </nav>
-      <ProjectContent className="flex flex-col gap-10">
-        <PasswordGenerator />
-        <IPChecker />
-        <QRCodeGenerator />
+      <ProjectContent className="flex flex-col gap-10 columns-2">
+        <PasswordGenerator
+          inline
+          navUrl="/playground/easy-password-generator"
+        />
+        <PasswordGenerator
+          cute
+          inline
+          navUrl="/playground/cute-password-maker"
+        />
+        <IPChecker inline />
+        <QRCodeGenerator inline />
       </ProjectContent>
       <ScrollToTopButton />
     </ProjectContainer>

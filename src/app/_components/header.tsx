@@ -34,10 +34,12 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex flex-1 items-center">
             <span className="text-2xl font-bold gradient-text">LogicaHaus</span>
           </Link>
-          <nav className={`hidden md:flex sm:space-x-6 lg:space-x-8`}>
+          <nav
+            className={`hidden justify-end md:flex sm:space-x-6 lg:space-x-8`}
+          >
             {links(isHome).map((link, index) =>
               link === undefined ? null : (
                 <Link
@@ -52,7 +54,7 @@ const Header = () => {
               )
             )}
           </nav>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 sm:ml-6 lg:ml-8">
             <ModeToggle />
             <Button
               variant="ghost"

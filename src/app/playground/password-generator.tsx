@@ -3,19 +3,21 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/app/_components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/app/_components/ui/card";
 import { Copy, CopyCheck, CopyX } from "lucide-react";
 import { Input } from "@/app/_components/ui/input";
-import { copyToClipboard } from "./util";
+import { copyToClipboard, generateCutePassword } from "./util";
+import { codeLinkBase } from "../global";
+import PlayGroundCard from "./_components/playground-card";
 
-export default function PasswordGenerator({ cute }: { cute?: boolean }) {
+export default function PasswordGenerator({
+  cute,
+  inline,
+  navUrl,
+}: {
+  cute?: boolean;
+  inline?: boolean;
+  navUrl?: string;
+}) {
   const [password, setPassword] = useState("");
   const [copyStatus, setCopyStatus] = useState<"success" | "fail" | "none">(
     "none"
@@ -41,7 +43,8 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
   });
 
   function handleGenerate() {
-    generatePasswordMutation.mutate();
+    if (cute) setPassword(generateCutePassword());
+    else generatePasswordMutation.mutate();
   }
 
   async function handleCopy() {
@@ -50,18 +53,18 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
   }
 
   return (
-    <section id="easy-password-generator">
+    <section id={cute ? "cute-password-maker" : "easy-password-generator"}>
       {cute ? (
-        <Card className="w-full mx-auto">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-primary">
-              🔐 Cute Password Generator 🐱
-            </CardTitle>
-            <CardDescription>
-              Generate strong and adorable passwords! 🌈✨
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <PlayGroundCard
+          footerText="Your passwords are as unique as you are! 🌟"
+          codeUrl={`${codeLinkBase}/pages/api/easy-pass.ts`}
+          navUrl={navUrl}
+          inline={inline}
+          titleClass="text-primary"
+          title="🔐 Cute Password Generator 🐱"
+          description="Generate strong and adorable passwords! 🌈✨"
+        >
+          <div className="space-y-4">
             <div className="relative">
               <Input
                 type="text"
@@ -97,22 +100,18 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
             >
               🎨 Generate Cute Password 🦄
             </Button>
-          </CardContent>
-          <CardFooter className="text-center text-sm text-muted-foreground">
-            Your passwords are as unique as you are! 🌟
-          </CardFooter>
-        </Card>
+          </div>
+        </PlayGroundCard>
       ) : (
-        <Card className="w-full mx-auto">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">
-              Easy Password Generator
-            </CardTitle>
-            <CardDescription>
-              Generate strong passwords that are easy to remember!
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <PlayGroundCard
+          footerText="Stay safe out there 🔐"
+          codeUrl={`${codeLinkBase}/pages/api/easy-pass.ts`}
+          navUrl={navUrl}
+          inline={inline}
+          title="Easy Password Generator"
+          description="Generate strong passwords that are easy to remember!"
+        >
+          <div className="space-y-4">
             <div className="relative">
               <Input
                 type="text"
@@ -148,11 +147,8 @@ export default function PasswordGenerator({ cute }: { cute?: boolean }) {
             >
               Generate Password
             </Button>
-          </CardContent>
-          <CardFooter className="text-center text-sm text-muted-foreground">
-            Stay safe out there 🔐
-          </CardFooter>
-        </Card>
+          </div>
+        </PlayGroundCard>
       )}
     </section>
   );
