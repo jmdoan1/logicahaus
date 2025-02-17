@@ -7,8 +7,10 @@ import { Menu, X } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 import { links } from "../global";
+import { useTheme } from "next-themes";
 
 const Header = () => {
+  const { resolvedTheme } = useTheme();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +23,7 @@ const Header = () => {
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -46,7 +49,11 @@ const Header = () => {
                   key={index}
                   href={link.link}
                   className={`text-sm font-medium hover:text-primary transition-colors ${
-                    link.title === "Play" ? "gradient-text-reverse" : ""
+                    link.title === "Play"
+                      ? // ? resolvedTheme === "dark"
+                        `gradient-text-reverse gradient-animated`
+                      : // : `gradient-text gradient-animated`
+                        ""
                   }`}
                 >
                   {link.title}
