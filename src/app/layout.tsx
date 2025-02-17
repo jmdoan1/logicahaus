@@ -22,6 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/assets/logo/logo-1-light-w-bg.svg" />
+      </head>
       <body className={inter.className}>
         <Providers>
           <div className="min-h-[100vh]">

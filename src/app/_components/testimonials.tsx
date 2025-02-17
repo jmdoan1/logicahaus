@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Jay was quick to respond to my initial request, and eager to jump into the project. He had a working prototype completed faster than I expected, and was self motivated to investigate the different technologies we needed. He ultimately came up with a working solution that saved me a ton of time.",
+      "Jay was quick to respond and eager to jump into the project. He had a working prototype faster than I expected, and was self motivated to investigate the different technologies we needed, ultimately coming up with a working solution that saved me a ton of time.",
     author: "Bobby Ren",
     company: "TKD React",
     link: "/projects/tkd-react",
