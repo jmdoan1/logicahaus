@@ -220,8 +220,6 @@ function getCuteAdjectives(specialCharacter?: boolean): string[] {
   const nextAdj = specialCharacter ? swapSpecialCharacter(capped) : capped;
   result.push(nextAdj);
 
-  console.log({ result });
-
   return result;
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import "./header.css";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/app/_components/ui/button";
@@ -47,7 +48,7 @@ const Header = () => {
                   key={index}
                   href={link.link}
                   className={`text-sm font-medium hover:text-primary transition-colors ${
-                    link.title === "Play" ? "gradient-text-reverse" : ""
+                    link.title === "Play" ? "gradient-text-reverse play" : ""
                   }`}
                 >
                   {link.title}
