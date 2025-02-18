@@ -4,4 +4,3 @@ TODO:
 - og
 - metadata
 - check files/utils
-- check sitemap accuracy

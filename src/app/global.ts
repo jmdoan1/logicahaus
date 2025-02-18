@@ -108,5 +108,6 @@ export const links = (isHome: boolean) => [
   { title: "About", link: "/#about" },
   isHome ? { title: "Testimonials", link: "/#testimonials" } : undefined,
   { title: "Contact", link: isHome ? "#contact" : "/contact" },
+  { title: "Blog", link: "/blog" },
   { title: "Play", link: "/playground" },
 ];

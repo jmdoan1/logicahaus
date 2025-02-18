@@ -1,8 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/mpg-tracker";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "MPG Pro",
+  description: "Multi-Vehicle Fuel Efficiency Tracker",
+  openGraph: {
+    title: "MPG Pro",
+    description: "Multi-Vehicle Fuel Efficiency Tracker",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/mpg-tracker";
-
   const iaps = [
     "Ad Free: $0.99 (Tier 1)",
     "Pro: $1.99 (Tier 2) - allows multiple users per account + CSV exports",

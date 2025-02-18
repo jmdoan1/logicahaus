@@ -6,13 +6,78 @@ import Header from "@/app/_components/header";
 import Footer from "@/app/_components/footer";
 import { Providers } from "./providers";
 import { Toaster } from "./_components/ui/toaster";
+import { baseUrl } from "./sitemap";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LogicaHaus - Innovative Software Solutions",
-  description:
-    "One-man software development agency delivering cutting-edge digital solutions",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "LogicaHaus",
+    template: "%s | LogicaHaus",
+  },
+  description: "Custom Software Engineering Solutions",
+  openGraph: {
+    title: "LogicaHaus",
+    description: "Custom Software Engineering Solutions",
+    url: baseUrl,
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: "/og-image.png",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: "/og-image.png",
+  },
+  keywords: [
+    "LogicaHaus",
+    "logic",
+    "software development",
+    "bespoke software",
+    "bespoke",
+    "Tulsa",
+    "Oklahoma",
+    "Florida",
+    "Jacksonville",
+    "custom",
+    "US",
+    "USA",
+    "U.S.",
+    "U.S.A",
+    "America",
+    "American",
+    "software",
+    "frontend",
+    "backend",
+    "API",
+    "database",
+    "sql",
+    "mongodb",
+    "app developer",
+    "web developer",
+    "development",
+    "agency",
+    "developer",
+    "freelance",
+    "custom",
+    "custom software",
+    "bots",
+    "scripts",
+    "Slack",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  generator: "Next.js",
 };
 
 export default function RootLayout({

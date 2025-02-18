@@ -3,10 +3,25 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "../_components/project-templates";
+import { baseUrl } from "../sitemap";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Blog",
-  description: "Read my blog.",
+export const metadata: Metadata = {
+  title: "Blog Posts",
+  description: "The LogicaBlog",
+  openGraph: {
+    title: "LogicaHaus Blog",
+    description: "The LogicaBlog",
+    url: `${baseUrl}/blog`,
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: "/og-image.png",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: "/og-image.png",
+  },
 };
 
 export default function Page() {

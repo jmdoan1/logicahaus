@@ -1,7 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/basket-counter";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "Basket Counter App",
+  description: "Custom Software Engineering Solutions",
+  openGraph: {
+    title: "LogicaHaus",
+    description: "Custom Software Engineering Solutions",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/basket-counter";
   const features = ["Form validation", "Local storage", "CSV Exports"];
   const timeline = [
     "05/27/17 - Work Began",

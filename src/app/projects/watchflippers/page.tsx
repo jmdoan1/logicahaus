@@ -1,8 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/watchflippers";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "WatchFlippers",
+  description: "The ultimate marketplace for watches",
+  openGraph: {
+    title: "WatchFlippers",
+    description: "The ultimate marketplace for watches",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/watchflippers";
-
   const contributions = [
     "Activity tab information is parsed and interpreted to provide appropriate activity information (i.e. you vs. username & human readable sentences)",
     "Activity tab cells navigate to relevant content when tapped",

@@ -7,9 +7,53 @@ import {
   ProjectHeader,
   ProjectSectionHeader,
 } from "@/app/_components/project-templates";
+import { Metadata } from "next";
+import { baseUrl } from "@/app/sitemap";
+
+const baseAssetUrl = "/assets/projects/dashr";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "Dashr: The Dashcam App",
+  description: "Free Dashcam App!",
+  openGraph: {
+    title: "Dashr: The Dashcam App",
+    description: "Free Dashcam App!",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  keywords: [
+    "LogicaHaus",
+    "free",
+    "dashcam",
+    "dash",
+    "cam",
+    "camera",
+    "car",
+    "ios",
+    "app",
+    "speed",
+    "mpg",
+    "kmh",
+    "music",
+    "controls",
+    "video",
+    "videos",
+    "accident",
+    "detection",
+    "live",
+    "map",
+    "view",
+  ],
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/dashr";
   return (
     <ProjectContainer className="px-5">
       <ProjectHeader>Dashr: The Dashcam App</ProjectHeader>

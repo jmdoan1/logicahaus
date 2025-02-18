@@ -1,8 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/memboard";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "Memboard",
+  description: "The Keyboard That Remembers For You",
+  openGraph: {
+    title: "Memboard",
+    description: "The Keyboard That Remembers For You",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/memboard";
-
   const timeline = [
     "04/09/2017 - Began Work",
     "04/09/2017 - Functional Prototype (1 hour)",

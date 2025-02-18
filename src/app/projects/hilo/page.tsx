@@ -1,8 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/hilo";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "HiLo",
+  description: "The HiLo app",
+  openGraph: {
+    title: "HiLo",
+    description: "The HiLo app",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/hilo";
-
   const contributions = [
     "User mentions",
     "Username suggestion bar while typing @...",

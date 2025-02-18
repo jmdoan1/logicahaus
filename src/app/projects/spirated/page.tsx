@@ -4,10 +4,32 @@ import {
   ProjectContent,
   ProjectHeader,
 } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/spirated";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "Spirated",
+  description:
+    "Rate, review, and share your favorite distilleries and spirits!",
+  openGraph: {
+    title: "Spirated",
+    description:
+      "Rate, review, and share your favorite distilleries and spirits!",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/spirated";
-
   return (
     <ProjectContainer>
       <ProjectHeader>Spirated</ProjectHeader>
@@ -36,8 +58,9 @@ export default function Page() {
       <ProjectContent>
         <h2 className="h2">Built in Expo</h2>
         <br />
-        <h3 className="h3">Status: Alpha</h3>
-        <br />
+        <p className="text-center">
+          Rate, review, and share your favorite distilleries and spirits!
+        </p>
         <FeatureList
           features={[
             "Mobile and web functionality",
@@ -52,6 +75,8 @@ export default function Page() {
             "Image upload and editing",
           ]}
         />
+        <br />
+        <h3 className="h3">Status: Alpha</h3>
       </ProjectContent>
     </ProjectContainer>
   );

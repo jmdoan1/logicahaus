@@ -6,9 +6,46 @@ import {
   ProjectSectionHeader,
   Timeline,
 } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/scenepin";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "ScenePin",
+  description: "Find filming locations and recreate your favorite shots!",
+  openGraph: {
+    title: "ScenePin",
+    description: "Find filming locations and recreate your favorite shots!",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  keywords: [
+    "movies",
+    "tv",
+    "shows",
+    "film",
+    "movie",
+    "show",
+    "films",
+    "filming",
+    "locations",
+    "camera",
+    "recreate",
+    "shot",
+    "shots",
+    "camera",
+  ],
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/scenepin";
   return (
     <ProjectContainer>
       <ProjectHeader>ScenePin</ProjectHeader>

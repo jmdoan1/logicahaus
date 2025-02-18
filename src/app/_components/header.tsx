@@ -40,7 +40,7 @@ const Header = () => {
             <span className="text-2xl font-bold gradient-text">LogicaHaus</span>
           </Link>
           <nav
-            className={`hidden justify-end md:flex sm:space-x-6 lg:space-x-8`}
+            className={`hidden justify-end md:flex sm:space-x-5 lg:space-x-8`}
           >
             {links(isHome).map((link, index) =>
               link === undefined ? null : (
@@ -56,7 +56,7 @@ const Header = () => {
               )
             )}
           </nav>
-          <div className="flex items-center space-x-4 sm:ml-6 lg:ml-8">
+          <div className="flex items-center space-x-1 sm:ml-4 lg:ml-6">
             <ModeToggle />
             <Button
               variant="ghost"

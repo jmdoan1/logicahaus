@@ -5,9 +5,30 @@ import {
   ProjectContent,
   ProjectHeader,
 } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/mileage-quest";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "Mileage Quest",
+  description: "Track all your drives in the background automatically!",
+  openGraph: {
+    title: "Mileage Quest",
+    description: "Track all your drives in the background automatically!",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/mileage-quest";
   return (
     <ProjectContainer>
       <ProjectHeader>Mileage Quest</ProjectHeader>

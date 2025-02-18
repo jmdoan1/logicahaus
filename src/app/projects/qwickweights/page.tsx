@@ -1,7 +1,28 @@
 import { SBSProject } from "@/app/_components/project-templates";
+import { baseUrl } from "@/app/sitemap";
+import { Metadata } from "next";
+
+const baseAssetUrl = "/assets/projects/qwickweights";
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: "QwickWeights",
+  description: "Barbell weight lifting calculator",
+  openGraph: {
+    title: "QwickWeights",
+    description: "Barbell weight lifting calculator",
+    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    siteName: "LogicaHaus",
+    locale: "en_US",
+    type: "website",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: `${baseAssetUrl}/preview.png`,
+  },
+};
 
 export default function Page() {
-  const baseAssetUrl = "/assets/projects/qwickweights";
   return (
     <SBSProject
       title="QwickWeights"
