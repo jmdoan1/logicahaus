@@ -2,7 +2,7 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "@/app/_components/project-templates";
-import PasswordGenerator from "../password-generator";
+import PasswordGenerator from "../_components/password-generator";
 import { baseUrl } from "@/app/sitemap";
 import { Metadata } from "next";
 

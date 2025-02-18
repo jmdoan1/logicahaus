@@ -4,9 +4,9 @@ import {
   ProjectHeader,
 } from "../_components/project-templates";
 import { ScrollToTopButton } from "@/app/_components/scroll-to-top-button";
-import IPChecker from "./ip";
-import PasswordGenerator from "./password-generator";
-import QRCodeGenerator from "./qr";
+import IPChecker from "./_components/ip";
+import PasswordGenerator from "./_components/password-generator";
+import QRCodeGenerator from "./_components/qr";
 import Link from "next/link";
 import { playgroundSlugs } from "./util";
 

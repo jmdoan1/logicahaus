@@ -2,7 +2,7 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "@/app/_components/project-templates";
-import IPChecker from "../ip";
+import IPChecker from "../_components/ip";
 import { baseUrl } from "@/app/sitemap";
 import { Metadata } from "next";
 

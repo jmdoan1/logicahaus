@@ -6,8 +6,8 @@ import { Copy, Download } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
 import { Input } from "@/app/_components/ui/input";
 import { toast } from "@/app/_hooks/use-toast";
-import PlayGroundCard from "./_components/playground-card";
-import { codeLinkBase } from "../global";
+import PlayGroundCard from "./playground-card";
+import { codeLinkBase } from "../../global";
 
 export default function QRCodeGenerator({ inline }: { inline?: boolean }) {
   const [inputText, setInputText] = useState("");

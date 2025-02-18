@@ -35,7 +35,7 @@ const Footer = () => {
             href="/clients"
             className="text-sm font-medium hover:underline underline-offset-4"
           >
-            clients
+            Clients
           </Link>
           <Link
             href="/rss"

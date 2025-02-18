@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
 import { useState } from "react";
-import PlayGroundCard from "./_components/playground-card";
-import { codeLinkBase } from "../global";
+import PlayGroundCard from "./playground-card";
+import { codeLinkBase } from "../../global";
 
 export default function IPChecker({ inline }: { inline?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(false);

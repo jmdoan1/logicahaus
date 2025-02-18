@@ -5,9 +5,9 @@ import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/app/_components/ui/button";
 import { Copy, CopyCheck, CopyX } from "lucide-react";
 import { Input } from "@/app/_components/ui/input";
-import { copyToClipboard, generateCutePassword } from "./util";
-import { codeLinkBase } from "../global";
-import PlayGroundCard from "./_components/playground-card";
+import { copyToClipboard, generateCutePassword } from "../util";
+import { codeLinkBase } from "../../global";
+import PlayGroundCard from "../_components/playground-card";
 
 export default function PasswordGenerator({
   cute,

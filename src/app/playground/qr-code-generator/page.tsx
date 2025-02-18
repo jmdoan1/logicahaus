@@ -2,7 +2,7 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "@/app/_components/project-templates";
-import QRCodeGenerator from "../qr";
+import QRCodeGenerator from "../_components/qr";
 import { baseUrl } from "@/app/sitemap";
 import { Metadata } from "next";
 
