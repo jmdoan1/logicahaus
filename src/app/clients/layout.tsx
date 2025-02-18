@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <ProjectContainer>
-        <ProjectContent className="flex justify-center w-[100%]">
+        <ProjectContent className="flex justify-center">
           {children}
         </ProjectContent>
       </ProjectContainer>

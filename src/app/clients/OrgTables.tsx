@@ -221,6 +221,7 @@ const OrgTables: React.FC<Props> = ({ orgId }) => {
                     }}
                   >
                     <input
+                      className="bg-transparent"
                       type={data_type === "integer" ? "number" : "text"}
                       value={params.value || ""}
                       onChange={(e) =>
@@ -307,6 +308,7 @@ const OrgTables: React.FC<Props> = ({ orgId }) => {
                 // Render a checkbox for boolean fields
                 return (
                   <input
+                    className="bg-transparent"
                     type="checkbox"
                     checked={params.value || false}
                     onChange={(e) =>
@@ -323,6 +325,7 @@ const OrgTables: React.FC<Props> = ({ orgId }) => {
                 // Default input for other types
                 return (
                   <input
+                    className="bg-transparent"
                     type={data_type === "integer" ? "number" : "text"}
                     value={params.value || ""}
                     onChange={(e) =>
@@ -375,8 +378,9 @@ const OrgTables: React.FC<Props> = ({ orgId }) => {
         return (
           <div key={table_name} style={{ marginTop: 50 }}>
             <h2 className="h2">{display_name}</h2>
-            <div style={{ width: "100%", backgroundColor: "white" }}>
+            <div style={{ width: "100%" }}>
               <DataGrid
+                className="bg-white"
                 rows={rows || []}
                 columns={columns}
                 processRowUpdate={(newRow) => {

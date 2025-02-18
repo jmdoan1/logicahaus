@@ -6,7 +6,7 @@ export default function Page() {
   const org = useOrganization();
 
   return (
-    <section>
+    <section className="w-full">
       <div
         style={{
           width: "100%",
