@@ -35,10 +35,10 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Working with LogicaHaus was a blast! Jay was quick to suggest new features and we were blown away by the design!",
-    author: "Corrie Nieto",
-    company: "ScenePin",
-    link: "/projects/scenepin",
+      "The app was done so fast! Jay was able to perfectly implement our Figma designs and the ux was flawless.",
+    author: "Kiana G.",
+    company: "HomeSight",
+    link: "/projects/homesight",
   },
 ];
 
