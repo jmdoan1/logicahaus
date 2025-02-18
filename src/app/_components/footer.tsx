@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { RiBlueskyLine, RiGithubLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import { links } from "../global";
+import { githubAccount, links } from "../global";
 import { useMemo } from "react";
 
 const Footer = () => {
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <Link
-            href="https://github.com/logicahaus"
+            href={githubAccount}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"
