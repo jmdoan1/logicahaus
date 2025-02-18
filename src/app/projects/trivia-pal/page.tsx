@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Trivia Pal",
     description: "The ultimate quiz and trivia app!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

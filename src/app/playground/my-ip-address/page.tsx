@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "QR Code Generator",
     description: "Create and download QR codes for any text or URL",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cute Password Maker",
     description: "Easy to remember passwords for kids!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ScenePin",
     description: "Find filming locations and recreate your favorite shots!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

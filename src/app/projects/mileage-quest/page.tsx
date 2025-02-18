@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mileage Quest",
     description: "Track all your drives in the background automatically!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

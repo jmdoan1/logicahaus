@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "QwickWeights",
     description: "Barbell weight lifting calculator",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

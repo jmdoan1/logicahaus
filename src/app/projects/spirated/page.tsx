@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Spirated",
     description:
       "Rate, review, and share your favorite distilleries and spirits!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

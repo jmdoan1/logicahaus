@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MPG Pro",
     description: "Multi-Vehicle Fuel Efficiency Tracker",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

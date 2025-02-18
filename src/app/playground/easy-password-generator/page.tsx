@@ -14,11 +14,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Easy Password Generator",
     description: "Generate strong passwords that are easy to remember!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",
     images: `${baseAssetUrl}/preview.png`,
+    // images: new URL(`${baseAssetUrl}/preview.png`, baseUrl).toString(),
   },
   twitter: {
     card: "summary_large_image",

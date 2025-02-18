@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LogicaHaus",
     description: "Custom Software Engineering Solutions",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",

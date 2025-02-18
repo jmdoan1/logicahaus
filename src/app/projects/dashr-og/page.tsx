@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dashr: The Dashcam App",
     description: "Free Dashcam App!",
-    url: baseAssetUrl + baseAssetUrl.replace("/assets", ""),
+    url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
     type: "website",
