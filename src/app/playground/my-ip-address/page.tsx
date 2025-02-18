@@ -9,11 +9,11 @@ import { Metadata } from "next";
 const baseAssetUrl = "/assets/playground/my-ip-address";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "QR Code Generator",
-  description: "Create and download QR codes for any text or URL",
+  title: "My IP Address",
+  description: "Get your public IP information",
   openGraph: {
-    title: "QR Code Generator",
-    description: "Create and download QR codes for any text or URL",
+    title: "My IP Address",
+    description: "Get your public IP information",
     url: baseUrl + baseAssetUrl.replace("/assets", ""),
     siteName: "LogicaHaus",
     locale: "en_US",
