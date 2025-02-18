@@ -31,6 +31,18 @@ const Footer = () => {
               </Link>
             )
           )}
+          <Link
+            href="/clients"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
+            clients
+          </Link>
+          <Link
+            href="/rss"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
+            rss
+          </Link>
         </div>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <Link
