@@ -44,7 +44,7 @@ const Footer = () => {
             rss
           </Link>
         </div>
-        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="flex items-center space-x-1.5 mt-4 md:mt-0">
           <Link
             href={githubAccount}
             target="_blank"
@@ -53,6 +53,15 @@ const Footer = () => {
           >
             <RiGithubLine className="h-8 w-8" />
             <span className="sr-only">GitHub</span>
+          </Link>
+          <Link
+            href="https://logicahaus-old.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground"
+          >
+            <div className="w-[1px] h-8 bg-muted-foreground" />
+            <span className="sr-only">Easter egg: Old version of website</span>
           </Link>
           <Link
             href="https://bsky.app/profile/logicahaus.bsky.social"
