@@ -15,21 +15,21 @@ const testimonials: Testimonial[] = [
   {
     quote:
       "Working with LogicaHaus was a blast! Jay was quick to suggest new features and we were blown away by the design!",
-    author: "Corrie Nieto",
+    author: "Corrie N.",
     company: "ScenePin",
     link: "/projects/scenepin",
   },
   {
     quote:
       "I’m excited! This is the first app I’ve ever seen from creation. This has been an excellent experience for me",
-    author: "Ricky Li",
+    author: "Ricky L.",
     company: "Costco Pharmacy Quotes",
     link: "/projects/pharmacy-quotes",
   },
   {
     quote:
       "Jay was quick to respond and eager to jump into the project. He had a working prototype faster than I expected, and was self motivated to investigate the different technologies we needed, ultimately coming up with a working solution that saved me a ton of time.",
-    author: "Bobby Ren",
+    author: "Bobby R.",
     company: "TKD React",
     link: "/projects/tkd-react",
   },
