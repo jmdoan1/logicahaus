@@ -146,7 +146,7 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
                 </div>
               </div>
               {/* <OrdersTable orders={orderData} /> */}
-              <div className="mt-8">
+              <div>
                 <OrdersTable orders={orderData()} />
               </div>
             </div>
@@ -194,6 +194,7 @@ type StatusDistribution = Record<NonOrderedStatus, number>;
 type StatusTimeline = Partial<Record<OrderStatus, Date>>;
 
 interface IOrder {
+  id: number;
   orderDate: Date;
   amount: number;
   buyerId: number;
@@ -220,6 +221,7 @@ export interface IOrderWithFunctionData extends IOrder {
 }
 
 class Order implements IOrder {
+  id: number;
   orderDate: Date;
   amount: number;
   buyerId: number;
@@ -229,6 +231,7 @@ class Order implements IOrder {
   timeLine: StatusTimeline;
 
   constructor(order: IOrder) {
+    this.id = order.id;
     this.orderDate = order.orderDate;
     this.amount = order.amount;
     this.buyerId = order.buyerId;
@@ -490,6 +493,7 @@ function generateMockOrders(
     const randProduct = products[Math.floor(Math.random() * products.length)];
 
     return {
+      id: Math.floor(Math.random() * 10000),
       orderDate: timeline[Math.min(...statusesLessThanRand)],
       amount: randProduct.price,
       buyerId: randUser.id,

@@ -42,6 +42,7 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
       return (
         <Button
           variant="ghost"
+          className="p-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date
@@ -55,11 +56,27 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
+    accessorKey: "id",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          ID
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: "amount",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
+          className="p-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Amount
@@ -77,24 +94,54 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "buyerId",
-    header: "Buyer ID",
-  },
-  {
     accessorKey: "productId",
-    header: "Product ID",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Product ID
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const status = row.getValue("status") as OrderStatus;
       return <div>{OrderStatus[status]}</div>;
     },
   },
   {
-    accessorKey: "escrow",
-    header: "Escrow",
+    accessorKey: "financials.escrow.amount",
+    id: "escrow",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Escrow
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const amount = row.original.financials.escrow.amount;
       const milestones = row.original.financials.escrow.milestones;
@@ -130,8 +177,20 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "pending",
-    header: "Pending",
+    accessorKey: "financials.pending.amount",
+    id: "pending",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Pending
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const amount = row.original.financials.pending.amount;
       const milestones = row.original.financials.pending.milestones;
@@ -169,8 +228,20 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "available",
-    header: "Available",
+    accessorKey: "financials.available.amount",
+    id: "available",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Available
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const amount = row.original.financials.available.amount;
       const milestones = row.original.financials.available.milestones;
@@ -228,12 +299,16 @@ export function OrdersTable({ orders }: { orders: IOrderWithFunctionData[] }) {
   });
 
   return (
-    <div className="w-full flex justify-center rounded-md border">
+    <div className="w-full flex justify-center rounded-md mt-8">
       <div className="w-full max-w-7xl">
-        <div className="flex items-center justify-end py-4">
+        <div className="flex items-center justify-end py-4 bg-border rounded-t-md">
+          {/* <Button variant="outline" className="mr-auto ml-2 opacity-0">
+            Columns <ChevronDown className="ml-2 h-4 w-4" />
+          </Button> */}
+          <p className="text-lg font-extrabold ml-2">Order History</p>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" className="ml-auto mr-2">
+              <Button variant="outline" className="ml-auto mr-2">
                 Columns <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -258,7 +333,7 @@ export function OrdersTable({ orders }: { orders: IOrderWithFunctionData[] }) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="rounded-md border">
+        <div className="rounded-md rounded-t-none border">
           <Table className="mx-auto">
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
