@@ -18,6 +18,7 @@ import {
   Cell,
 } from "recharts";
 import { useQuery } from "@tanstack/react-query";
+import { OrdersTable } from "./orders-table";
 
 export default function ChartsAndData({ inline }: { inline?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -145,6 +146,9 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
                 </div>
               </div>
               {/* <OrdersTable orders={orderData} /> */}
+              <div className="mt-8">
+                <OrdersTable orders={orderData()} />
+              </div>
             </div>
           )}
         </div>
@@ -206,7 +210,7 @@ interface Milestone {
   amount: number;
 }
 
-interface IOrderWithFunctionData extends IOrder {
+export interface IOrderWithFunctionData extends IOrder {
   status: OrderStatus;
   financials: {
     escrow: { amount: number; milestones: Milestone[] };
