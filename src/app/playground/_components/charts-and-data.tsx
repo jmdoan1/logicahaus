@@ -179,7 +179,7 @@ type Product = {
   shopId: number;
 };
 
-enum OrderStatus {
+export enum OrderStatus {
   Ordered = 0,
   Paid = 100,
   Confirmed = 200,

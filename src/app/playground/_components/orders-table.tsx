@@ -37,46 +37,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-
-enum OrderStatus {
-  Ordered = 0,
-  Paid = 100,
-  Confirmed = 200,
-  Processing = 300,
-  Processed = 400,
-  Shipped = 500,
-  Delivered = 600,
-}
-
-type NonOrderedStatus = Exclude<OrderStatus, OrderStatus.Ordered>;
-type StatusDistribution = Record<NonOrderedStatus, number>;
-type StatusTimeline = Partial<Record<OrderStatus, Date>>;
-
-interface IOrder {
-  orderDate: Date;
-  amount: number;
-  buyerId: number;
-  shopId: number;
-  productId: number;
-  distribution: StatusDistribution;
-  timeLine: StatusTimeline;
-}
-
-interface Milestone {
-  status: OrderStatus;
-  date?: Date;
-  percentage: number;
-  amount: number;
-}
-
-export interface IOrderWithFunctionData extends IOrder {
-  status: OrderStatus;
-  financials: {
-    escrow: { amount: number; milestones: Milestone[] };
-    pending: { amount: number; milestones: Milestone[] };
-    available: { amount: number; milestones: Milestone[] };
-  };
-}
+import { IOrderWithFunctionData, OrderStatus } from "./charts-and-data";
 
 const columns: ColumnDef<IOrderWithFunctionData>[] = [
   {
@@ -136,16 +97,16 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "financials.escrow.amount",
+    accessorKey: "escrow",
     header: "Escrow",
     cell: ({ row }) => {
-      const amount = row.getValue("financials.escrow.amount") as number;
+      const amount = row.original.financials.escrow.amount;
       const milestones = row.original.financials.escrow.milestones;
       return (
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="cursor-help">
+              <div className="cursor-context-menu">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",
@@ -173,16 +134,16 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "financials.pending.amount",
+    accessorKey: "pending",
     header: "Pending",
     cell: ({ row }) => {
-      const amount = row.getValue("financials.pending.amount") as number;
+      const amount = row.original.financials.pending.amount;
       const milestones = row.original.financials.pending.milestones;
       return (
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="cursor-help">
+              <div className="cursor-context-menu">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",
@@ -212,16 +173,16 @@ const columns: ColumnDef<IOrderWithFunctionData>[] = [
     },
   },
   {
-    accessorKey: "financials.available.amount",
+    accessorKey: "available",
     header: "Available",
     cell: ({ row }) => {
-      const amount = row.getValue("financials.available.amount") as number;
+      const amount = row.original.financials.available.amount;
       const milestones = row.original.financials.available.milestones;
       return (
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="cursor-help">
+              <div className="cursor-context-menu">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",
