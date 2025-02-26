@@ -17,6 +17,14 @@ export const playgroundSlugs = [
   },
 ];
 
+export const showcaseSlugs = [
+  {
+    name: "Charts and Data",
+    hash: "#charts-and-data",
+    link: "/charts-and-data",
+  },
+];
+
 export async function copyToClipboard(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);

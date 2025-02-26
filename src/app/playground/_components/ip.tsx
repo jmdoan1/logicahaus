@@ -26,7 +26,7 @@ export default function IPChecker({ inline }: { inline?: boolean }) {
         description="Get your public IP information"
         footerText="🤫"
         codeUrl={`${codeLinkBase}/pages/api/ip.ts`}
-        navUrl={`/playground${inline ? "/" : "#"}my-ip-address`}
+        navUrl={`/playground${inline ? "/" : "/utils#"}my-ip-address`}
         inline={inline}
       >
         {isLoading ? (

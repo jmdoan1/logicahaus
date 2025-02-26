@@ -44,7 +44,10 @@ export default function Page() {
   return (
     <ProjectContainer>
       <ProjectContent>
-        <PasswordGenerator cute navUrl="/playground#cute-password-maker" />
+        <PasswordGenerator
+          cute
+          navUrl="/playground/utils#cute-password-maker"
+        />
         <div className="text-center text-muted-foreground underline mt-5">
           <a href="/playground/easy-password-generator">
             Looking for something a little more robust?

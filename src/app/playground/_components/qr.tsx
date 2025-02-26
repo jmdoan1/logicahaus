@@ -69,8 +69,8 @@ export default function QRCodeGenerator({ inline }: { inline?: boolean }) {
         title="QR Code Generator"
         description="Generate QR codes for any text or URL"
         footerText="Scan and share with ease! 📲"
-        codeUrl={`${codeLinkBase}/src/app/playground/qr.tsx`}
-        navUrl={`/playground${inline ? "/" : "#"}qr-code-generator`}
+        codeUrl={`${codeLinkBase}/src/app/playground/_components/qr.tsx`}
+        navUrl={`/playground${inline ? "/" : "/utils#"}qr-code-generator`}
         inline={inline}
       >
         <div className="space-y-6">
@@ -83,6 +83,7 @@ export default function QRCodeGenerator({ inline }: { inline?: boolean }) {
           />
           {qrCodeImage && (
             <div className="flex flex-col items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={qrCodeImage}
                 alt="Generated QR Code"
