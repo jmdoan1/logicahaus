@@ -56,7 +56,7 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
     <section id="charts-and-data">
       <PlayGroundCard
         title="Charts and Data 📊"
-        description={`${data?.orders.length}`}
+        description="Need some reports?"
         footerText="🤫"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/charts-and-data.tsx`}
         navUrl={`/playground${inline ? "/" : "/showcase#"}charts-and-data`}
@@ -514,7 +514,7 @@ async function generateMockData() {
   const users = generateMockUsers(5);
   const shops = generateMockShops(users);
   const products = generateMockProducts(shops, 10);
-  const orders = generateMockOrders(users, products, 20).map(
+  const orders = generateMockOrders(users, products, 15).map(
     (ord) => new Order(ord)
   );
 
