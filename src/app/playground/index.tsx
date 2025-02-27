@@ -15,6 +15,7 @@ import { Button } from "../_components/ui/button";
 import ChartsAndData from "./_components/charts-and-data";
 import Fintech from "./_components/fintech";
 import Animations from "./_components/animations";
+import ColorPaletteGenerator from "./_components/color-palette-generator";
 
 export default function Playground({ mode }: { mode: "utils" | "showcase" }) {
   const [utilsHovered, setUtilsHovered] = useState(false);
@@ -92,6 +93,7 @@ export default function Playground({ mode }: { mode: "utils" | "showcase" }) {
         </div>
         {mode === "utils" ? (
           <>
+            <ColorPaletteGenerator inline />
             <PasswordGenerator
               inline
               navUrl="/playground/easy-password-generator"

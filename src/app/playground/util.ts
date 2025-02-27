@@ -1,5 +1,10 @@
 export const playgroundSlugs = [
   {
+    name: "Color Palette Generator",
+    hash: "#color-palette-generator",
+    link: "/color-palette-generator",
+  },
+  {
     name: "Easy Password Generator",
     hash: "#easy-password-generator",
     link: "/easy-password-generator",
