@@ -10,7 +10,7 @@ import PasswordGenerator from "./_components/password-generator";
 import QRCodeGenerator from "./_components/qr";
 import Link from "next/link";
 import { playgroundSlugs, showcaseSlugs } from "./util";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../_components/ui/button";
 import ChartsAndData from "./_components/charts-and-data";
 import Fintech from "./_components/fintech";
@@ -21,7 +21,6 @@ export default function Page() {
   const [mode, setMode] = useState<"utils" | "showcase" | "loading">("loading");
   const [utilsHovered, setUtilsHovered] = useState(false);
   const [showcaseHovered, setShowcaseHovered] = useState(false);
-  const isFirstRender = useRef(true);
 
   const inactiveTab =
     "flex-1 p-4 hover:bg-input rounded-2xl rounded-b-none text-xl text-center";
@@ -52,16 +51,11 @@ export default function Page() {
     }
   }, [mode]);
 
-  // Clear the hash from the URL when the mode changes (skip first render)
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+  function clearHash() {
     if (typeof window !== "undefined" && window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
-  }, [mode]);
+  }
 
   // Show a loading state while determining the mode
   if (mode === "loading") {
@@ -80,7 +74,10 @@ export default function Page() {
             <Button
               variant="ghost"
               className={mode === "utils" ? activeTab : inactiveTab}
-              onClick={() => setMode("utils")}
+              onClick={() => {
+                if (mode !== "utils") clearHash();
+                setMode("utils");
+              }}
               onMouseEnter={() => setUtilsHovered(true)}
               onMouseLeave={() => setUtilsHovered(false)}
             >
@@ -89,7 +86,10 @@ export default function Page() {
             <Button
               variant="ghost"
               className={mode === "showcase" ? activeTab : inactiveTab}
-              onClick={() => setMode("showcase")}
+              onClick={() => {
+                if (mode !== "showcase") clearHash();
+                setMode("showcase");
+              }}
               onMouseEnter={() => setShowcaseHovered(true)}
               onMouseLeave={() => setShowcaseHovered(false)}
             >

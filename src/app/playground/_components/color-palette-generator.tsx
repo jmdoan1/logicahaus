@@ -262,7 +262,7 @@ export default function ColorPaletteGenerator({
       <PlayGroundCard
         title="Color Palette Generator"
         description="Generate harmonious color palettes for your designs"
-        footerText="I hope the thing you're making is pretty"
+        footerText="Add something beautiful to the world"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/color-palette-generator.tsx`}
         navUrl={`/playground${inline ? "/" : "#"}color-palette-generator`}
         inline={inline}
