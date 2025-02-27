@@ -57,7 +57,7 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
       <PlayGroundCard
         title="Charts and Data 📊"
         description="Need some reports?"
-        footerText="🤫"
+        footerText="📈"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/charts-and-data.tsx`}
         navUrl={`/playground${inline ? "/" : "/showcase#"}charts-and-data`}
         inline={inline}
