@@ -59,7 +59,7 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
         description="Need some reports?"
         footerText="📈"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/charts-and-data.tsx`}
-        navUrl={`/playground${inline ? "/" : "/showcase#"}charts-and-data`}
+        navUrl={`/playground${inline ? "/" : "#"}charts-and-data`}
         inline={inline}
       >
         <div className="space-y-4" ref={ref}>

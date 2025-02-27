@@ -17,7 +17,7 @@ export default function Fintech({ inline }: { inline?: boolean }) {
         description="For the fiscally savvy"
         footerText="Jay also holds a degree and many years of experience in accounting"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/fintech/crypto-trading-interface.tsx`}
-        navUrl={`/playground${inline ? "/" : "/showcase#"}fintech`}
+        navUrl={`/playground${inline ? "/" : "#"}fintech`}
         inline={inline}
       >
         <div className="space-y-4">

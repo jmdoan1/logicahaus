@@ -11,6 +11,7 @@ import Link from "next/link";
 
 export default function Animations({ inline }: { inline?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(!inline);
+  const [canShowPractical, setCanShowPractical] = useState(!inline);
 
   return (
     <section id="animations">
@@ -19,14 +20,17 @@ export default function Animations({ inline }: { inline?: boolean }) {
         description="A little pizzazz never hurt anyone"
         footerText="Why don't you ani-make your way to the contact page?"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/animations/index.tsx`}
-        navUrl={`/playground${inline ? "/" : "/showcase#"}animations`}
+        navUrl={`/playground${inline ? "/" : "#"}animations`}
         inline={inline}
       >
-        <div className="space-y-4">
+        <div className="space-y-4 text-center">
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+              setCanShowPractical(true);
+            }}
           >
             {isExpanded ? (
               <>
@@ -48,16 +52,18 @@ export default function Animations({ inline }: { inline?: boolean }) {
                   <Isometric />
                 </div>
               </div>
-              <Link
-                prefetch
-                href={"/#about"}
-                className={`underline px-4 pt-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap inline-block text-muted-foreground hover:text-primary hover:bg-primary/10"`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Maybe something a little more practical?
-              </Link>
             </div>
+          )}
+          {canShowPractical && (
+            <Link
+              prefetch
+              href={"/#about"}
+              className={`underline px-4 pt-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap inline-block text-muted-foreground hover:text-primary hover:bg-primary/10 "`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Maybe something a little more practical?
+            </Link>
           )}
         </div>
       </PlayGroundCard>

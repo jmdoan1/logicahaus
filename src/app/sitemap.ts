@@ -1,6 +1,6 @@
 import { projects } from "./global";
 import { getBlogPosts } from "@/app/blog/utils";
-import { playgroundSlugs } from "./playground/util";
+import { playgroundSlugs, showcaseSlugs } from "./playground/util";
 
 export const baseUrl = "https://www.logica.haus";
 
@@ -15,7 +15,7 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  const playgroundUrls = playgroundSlugs.map((slug) => ({
+  const playgroundUrls = [...playgroundSlugs, ...showcaseSlugs].map((slug) => ({
     url: `${baseUrl}/playground${slug.link}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));

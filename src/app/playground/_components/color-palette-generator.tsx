@@ -262,9 +262,9 @@ export default function ColorPaletteGenerator({
       <PlayGroundCard
         title="Color Palette Generator"
         description="Generate harmonious color palettes for your designs"
-        footerText="I hope your thing is pretty"
+        footerText="I hope the thing you're making is pretty"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/color-palette-generator.tsx`}
-        navUrl={`/playground${inline ? "/" : "/utils#"}color-palette-generator`}
+        navUrl={`/playground${inline ? "/" : "#"}color-palette-generator`}
         inline={inline}
       >
         <div className="space-y-4">
@@ -275,11 +275,12 @@ export default function ColorPaletteGenerator({
           >
             {isExpanded ? (
               <>
-                Hide Details <ChevronUp className="ml-2 h-4 w-4" />
+                Inspiration eludes me still{" "}
+                <ChevronUp className="ml-2 h-4 w-4" />
               </>
             ) : (
               <>
-                Show Details <ChevronDown className="ml-2 h-4 w-4" />
+                Let&apos;s create <ChevronDown className="ml-2 h-4 w-4" />
               </>
             )}
           </Button>

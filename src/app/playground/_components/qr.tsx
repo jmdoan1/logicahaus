@@ -70,7 +70,7 @@ export default function QRCodeGenerator({ inline }: { inline?: boolean }) {
         description="Generate QR codes for any text or URL"
         footerText="Scan and share with ease! 📲"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/qr.tsx`}
-        navUrl={`/playground${inline ? "/" : "/utils#"}qr-code-generator`}
+        navUrl={`/playground${inline ? "/" : "#"}qr-code-generator`}
         inline={inline}
       >
         <div className="space-y-6">

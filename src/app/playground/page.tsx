@@ -10,21 +10,49 @@ import PasswordGenerator from "./_components/password-generator";
 import QRCodeGenerator from "./_components/qr";
 import Link from "next/link";
 import { playgroundSlugs, showcaseSlugs } from "./util";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "../_components/ui/button";
 import ChartsAndData from "./_components/charts-and-data";
 import Fintech from "./_components/fintech";
 import Animations from "./_components/animations";
 import ColorPaletteGenerator from "./_components/color-palette-generator";
 
-export default function Playground({ mode }: { mode: "utils" | "showcase" }) {
+export default function Page() {
+  const [mode, setMode] = useState<"utils" | "showcase">(
+    showcaseSlugs.map((s) => s.hash).includes(window.location.hash)
+      ? "showcase"
+      : "utils"
+  );
   const [utilsHovered, setUtilsHovered] = useState(false);
   const [showcaseHovered, setShowcaseHovered] = useState(false);
+  const isFirstRender = useRef(true);
 
   const inactiveTab =
-    "flex-1 p-4 hover:bg-input rounded-2xl rounded-b-none text-center";
+    "flex-1 p-4 hover:bg-input rounded-2xl rounded-b-none text-xl text-center";
 
   const activeTab = inactiveTab + " bg-input";
+
+  // Handle scrolling to the correct element based on the hash (only on first load)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  // Clear the hash from the URL when the mode changes
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [mode]);
 
   return (
     <ProjectContainer>
@@ -35,30 +63,24 @@ export default function Playground({ mode }: { mode: "utils" | "showcase" }) {
       <ProjectContent className="flex flex-col gap-10 columns-2">
         <div>
           <div className="flex flex-row">
-            <Link
-              prefetch
-              href="/playground/utils"
+            <Button
+              variant="ghost"
               className={mode === "utils" ? activeTab : inactiveTab}
-              // onClick={() => setMode("utils")}
+              onClick={() => setMode("utils")}
               onMouseEnter={() => setUtilsHovered(true)}
               onMouseLeave={() => setUtilsHovered(false)}
             >
-              <Button variant="ghost" className="text-xl align-self-center">
-                Utils
-              </Button>
-            </Link>
-            <Link
-              prefetch
-              href="/playground/showcase"
+              Utils
+            </Button>
+            <Button
+              variant="ghost"
               className={mode === "showcase" ? activeTab : inactiveTab}
-              // onClick={() => setMode("showcase")}
+              onClick={() => setMode("showcase")}
               onMouseEnter={() => setShowcaseHovered(true)}
               onMouseLeave={() => setShowcaseHovered(false)}
             >
-              <Button variant="ghost" className="text-xl">
-                Showcase
-              </Button>
-            </Link>
+              Showcase
+            </Button>
           </div>
           <nav
             className={
