@@ -18,11 +18,7 @@ import Animations from "./_components/animations";
 import ColorPaletteGenerator from "./_components/color-palette-generator";
 
 export default function Page() {
-  const [mode, setMode] = useState<"utils" | "showcase">(
-    showcaseSlugs.map((s) => s.hash).includes(window.location.hash)
-      ? "showcase"
-      : "utils"
-  );
+  const [mode, setMode] = useState<"utils" | "showcase" | "loading">("loading");
   const [utilsHovered, setUtilsHovered] = useState(false);
   const [showcaseHovered, setShowcaseHovered] = useState(false);
   const isFirstRender = useRef(true);
@@ -32,27 +28,45 @@ export default function Page() {
 
   const activeTab = inactiveTab + " bg-input";
 
+  // Set the mode based on the hash (client-side only)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setMode(
+        showcaseSlugs.map((s) => s.hash).includes(window.location.hash)
+          ? "showcase"
+          : "utils"
+      );
+    }
+  }, []);
+
   // Handle scrolling to the correct element based on the hash (only on first load)
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.getElementById(hash.substring(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined" && mode !== "loading") {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, [mode]);
 
-  // Clear the hash from the URL when the mode changes
+  // Clear the hash from the URL when the mode changes (skip first render)
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
-    if (window.location.hash) {
+    if (typeof window !== "undefined" && window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
   }, [mode]);
+
+  // Show a loading state while determining the mode
+  if (mode === "loading") {
+    return <div>Loading...</div>; // Or a skeleton loader
+  }
 
   return (
     <ProjectContainer>
