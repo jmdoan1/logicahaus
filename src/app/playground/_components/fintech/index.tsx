@@ -8,7 +8,7 @@ import { codeLinkBase } from "../../../global";
 import CryptoTradingInterface from "./crypto-trading-interface";
 
 export default function Fintech({ inline }: { inline?: boolean }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(!inline);
 
   return (
     <section id="fintech">

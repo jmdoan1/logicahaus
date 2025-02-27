@@ -28,6 +28,11 @@ export const showcaseSlugs = [
     hash: "#fintech",
     link: "/fintech",
   },
+  {
+    name: "Animations",
+    hash: "#animations",
+    link: "/animations",
+  },
 ];
 
 export async function copyToClipboard(text: string): Promise<boolean> {

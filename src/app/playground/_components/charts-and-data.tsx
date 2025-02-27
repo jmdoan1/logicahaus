@@ -21,7 +21,7 @@ import { useQuery } from "@tanstack/react-query";
 import { OrdersTable } from "./orders-table";
 
 export default function ChartsAndData({ inline }: { inline?: boolean }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(!inline);
   const [chartWidth, setChartWidth] = useState(0);
 
   const { data, refetch } = useQuery({

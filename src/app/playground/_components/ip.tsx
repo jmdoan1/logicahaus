@@ -8,7 +8,7 @@ import PlayGroundCard from "./playground-card";
 import { codeLinkBase } from "../../global";
 
 export default function IPChecker({ inline }: { inline?: boolean }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(!inline);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["ip"],
