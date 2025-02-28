@@ -5,6 +5,11 @@ export const playgroundSlugs = [
     link: "/color-palette-generator",
   },
   {
+    name: "Typescript Playground",
+    hash: "#typescript-playground",
+    link: "/typescript-playground",
+  },
+  {
     name: "Easy Password Generator",
     hash: "#easy-password-generator",
     link: "/easy-password-generator",

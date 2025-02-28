@@ -16,6 +16,7 @@ import ChartsAndData from "./_components/charts-and-data";
 import Fintech from "./_components/fintech";
 import Animations from "./_components/animations";
 import ColorPaletteGenerator from "./_components/color-palette-generator";
+import TypescriptPlayground from "./_components/typescript-playground";
 
 export default function Page() {
   const [mode, setMode] = useState<"utils" | "showcase" | "loading">("loading");
@@ -130,6 +131,7 @@ export default function Page() {
         {mode === "utils" ? (
           <>
             <ColorPaletteGenerator inline />
+            <TypescriptPlayground inline />
             <PasswordGenerator
               inline
               navUrl="/playground/easy-password-generator"
