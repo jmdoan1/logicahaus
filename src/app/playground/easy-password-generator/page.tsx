@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     "safety",
     "generator",
     "strong",
+    "secure",
   ],
 };
 

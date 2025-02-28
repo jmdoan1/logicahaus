@@ -10,6 +10,11 @@ export const playgroundSlugs = [
     link: "/typescript-playground",
   },
   {
+    name: "Accessibility Auditor",
+    hash: "#accessibility-auditor",
+    link: "/accessibility-auditor",
+  },
+  {
     name: "Easy Password Generator",
     hash: "#easy-password-generator",
     link: "/easy-password-generator",

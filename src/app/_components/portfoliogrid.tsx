@@ -108,7 +108,7 @@ function ProjectCard({
     >
       <AspectRatio ratio={1} key={slug}>
         <Image
-          alt={slug}
+          alt={slug + " screenshots"}
           src={
             slug === githubUrl
               ? "/assets/logo/logo-1-light-w-bg.svg"
