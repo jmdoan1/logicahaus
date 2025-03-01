@@ -35,6 +35,62 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
   const [protocol, setProtocol] = useState<string>("https://");
   const [url, setUrl] = useState<string>("");
   const [localResults, setLocalResults] = useState<Violation[]>([]);
+  const [clientError, setClientError] = useState<Error | null>(null);
+  const [isClientPending, setIsClientPending] = useState(false);
+
+  const runClientSideScan = async (scanUrl: string): Promise<void> => {
+    try {
+      // Load axe-core if not available
+      if (!(window as any).axe) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.9.1/axe.min.js";
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = () => reject(new Error("Failed to load axe-core"));
+          document.body.appendChild(script);
+        });
+      }
+
+      // Create and load iframe
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+      iframe.src = scanUrl;
+
+      await new Promise<void>((resolve, reject) => {
+        iframe.onload = () => resolve();
+        iframe.onerror = () => reject(new Error("Failed to load iframe"));
+      });
+
+      const iframeDoc = iframe.contentDocument;
+      if (!iframeDoc) throw new Error("Couldn't access iframe content");
+
+      // Run axe-core
+      const results = await (window as any).axe.run(iframeDoc.documentElement);
+
+      // Transform results
+      const violations: Violation[] = results.violations.map((v: any) => ({
+        id: v.id,
+        help: v.help,
+        description: v.description,
+        impact: v.impact,
+        tags: v.tags,
+        nodes: v.nodes.map((node: any) => ({
+          target: node.target,
+          failureSummary: node.failureSummary || "No summary available",
+        })),
+      }));
+
+      setLocalResults(violations);
+      setClientError(null);
+    } finally {
+      // Clean up iframe
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach((iframe) => iframe.remove());
+    }
+  };
 
   const { mutate, isPending, isError, error } = useMutation<
     Violation[],
@@ -54,19 +110,33 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let fullUrl = "";
-    if (protocol === "localhost") {
-      // If the user input starts with a slash, don't add an extra one
-      fullUrl =
-        url.startsWith("/") || url.startsWith(":")
-          ? "http://localhost" + url
-          : "http://localhost/" + url;
-    } else {
-      fullUrl = protocol + url;
+
+    try {
+      if (protocol === "localhost") {
+        fullUrl =
+          url.startsWith("/") || url.startsWith(":")
+            ? `http://localhost${url}`
+            : `http://localhost/${url}`;
+
+        // Validate same-origin
+        if (new URL(fullUrl).origin !== window.location.origin) {
+          throw new Error("Client-side scan requires same-origin URL");
+        }
+
+        setIsClientPending(true);
+        await runClientSideScan(fullUrl);
+      } else {
+        fullUrl = protocol + url;
+        mutate(fullUrl);
+      }
+    } catch (error) {
+      setClientError(error as Error);
+    } finally {
+      setIsClientPending(false);
     }
-    mutate(fullUrl);
   };
 
   const getImpactStyles = (impact: string | undefined) => {
@@ -126,7 +196,7 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
                 required
               />
               <Button type="submit" disabled={isPending} className="px-4">
-                {isPending ? (
+                {isPending || isClientPending ? (
                   <span className="animate-pulse">Scanning...</span>
                 ) : (
                   "Scan"
@@ -134,17 +204,18 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
               </Button>
             </form>
 
-            {isError && (
-              <Alert
-                variant="destructive"
-                className="animate-in slide-in-from-top-2"
-              >
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  {error?.message || "Failed to scan website"}
-                </AlertDescription>
-              </Alert>
-            )}
+            {isError ||
+              (clientError && (
+                <Alert
+                  variant="destructive"
+                  className="animate-in slide-in-from-top-2"
+                >
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>
+                    {error?.message || "Failed to scan website"}
+                  </AlertDescription>
+                </Alert>
+              ))}
 
             {localResults.length > 0 && (
               <div className="space-y-4 animate-in fade-in-50 duration-300">
