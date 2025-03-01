@@ -1,18 +1,23 @@
 "use client";
 
-import type React from "react";
-
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
 import { Input } from "@/app/_components/ui/input";
 import { Badge } from "@/app/_components/ui/badge";
 import { Alert, AlertDescription } from "@/app/_components/ui/alert";
-import { useState } from "react";
 import PlayGroundCard from "./playground-card";
 import { codeLinkBase } from "../../global";
 import axios from "axios";
 import { cn } from "@/app/_lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/_components/ui/select";
 
 export interface Violation {
   id: string;
@@ -27,6 +32,7 @@ export interface Violation {
 }
 
 export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
+  const [protocol, setProtocol] = useState<string>("https://");
   const [url, setUrl] = useState<string>("");
   const [localResults, setLocalResults] = useState<Violation[]>([]);
 
@@ -50,7 +56,17 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (url) mutate(url);
+    let fullUrl = "";
+    if (protocol === "localhost") {
+      // If the user input starts with a slash, don't add an extra one
+      fullUrl =
+        url.startsWith("/") || url.startsWith(":")
+          ? "http://localhost" + url
+          : "http://localhost/" + url;
+    } else {
+      fullUrl = protocol + url;
+    }
+    mutate(fullUrl);
   };
 
   const getImpactStyles = (impact: string | undefined) => {
@@ -81,20 +97,37 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
         <div className="space-y-4">
           <div className="space-y-6 animate-in fade-in-50 duration-300">
             <form onSubmit={handleSubmit} className="flex gap-2">
+              {/* Protocol select */}
+              <Select
+                value={protocol}
+                onValueChange={(value) => setProtocol(value)}
+                // className="w-28"
+              >
+                <SelectTrigger className="w-28">
+                  <SelectValue placeholder="Protocol" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="https://">https://</SelectItem>
+                  <SelectItem value="http://">http://</SelectItem>
+                  <SelectItem value="localhost">localhost</SelectItem>
+                </SelectContent>
+              </Select>
+
+              {/* URL input (without protocol) */}
               <Input
-                type="url"
+                type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://example.com"
+                placeholder={
+                  protocol === "localhost" ? "/path (optional)" : "example.com"
+                }
                 className="flex-1"
                 aria-label="Website URL to scan"
                 required
               />
               <Button type="submit" disabled={isPending} className="px-4">
                 {isPending ? (
-                  <>
-                    <span className="animate-pulse">Scanning...</span>
-                  </>
+                  <span className="animate-pulse">Scanning...</span>
                 ) : (
                   "Scan"
                 )}

@@ -18,5 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default function Projects() {
-  return <PortfolioGrid />;
+  return (
+    <div>
+      <PortfolioGrid />
+    </div>
+  );
 }
