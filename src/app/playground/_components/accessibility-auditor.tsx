@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -212,7 +213,9 @@ export default function AccessibilityAuditor({ inline }: { inline?: boolean }) {
                 >
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
-                    {error?.message || "Failed to scan website"}
+                    {error && error["message"]
+                      ? error["message"]
+                      : "Failed to scan website"}
                   </AlertDescription>
                 </Alert>
               ))}
