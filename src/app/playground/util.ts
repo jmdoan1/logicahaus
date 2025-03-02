@@ -34,9 +34,9 @@ export const playgroundSlugs = [
 
 export const showcaseSlugs = [
   {
-    name: "Charts and Data",
-    hash: "#charts-and-data",
-    link: "/charts-and-data",
+    name: "E-commerce Dashboard",
+    hash: "#ecommerce",
+    link: "/ecommerce",
   },
   {
     name: "Fintech",

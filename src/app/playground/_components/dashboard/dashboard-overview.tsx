@@ -16,12 +16,12 @@ import {
   CardTitle,
 } from "@/app/_components/ui/card";
 import { Skeleton } from "@/app/_components/ui/skeleton";
-import type { IOrderWithFunctionData, Shop, Product } from "../charts-and-data";
+import type { IOrderWithFunctionData, Shop, Product } from "../ecommerce";
 import {
   processStatusData,
   processFinancialData,
   formatCurrency,
-} from "../charts-and-data";
+} from "../ecommerce";
 
 export function DashboardOverview({
   orders,

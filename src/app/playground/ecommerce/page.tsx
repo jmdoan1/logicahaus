@@ -2,7 +2,7 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "@/app/_components/project-templates";
-import ChartsAndData from "../_components/charts-and-data";
+import ChartsAndData from "../_components/ecommerce";
 
 export default function Page() {
   return (

@@ -12,7 +12,7 @@ import Link from "next/link";
 import { playgroundSlugs, showcaseSlugs } from "./util";
 import { useState, useEffect } from "react";
 import { Button } from "../_components/ui/button";
-import ChartsAndData from "./_components/charts-and-data";
+import ChartsAndData from "./_components/ecommerce";
 import Fintech from "./_components/fintech";
 import Animations from "./_components/animations";
 import ColorPaletteGenerator from "./_components/color-palette-generator";

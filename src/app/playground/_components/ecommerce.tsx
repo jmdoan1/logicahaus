@@ -58,13 +58,13 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
   );
 
   return (
-    <section id="charts-and-data">
+    <section id="ecommerce">
       <PlayGroundCard
         title="E-commerce Admin Dashboard"
         description="Manage your shops, products, and orders"
         footerText="Admin Dashboard"
-        codeUrl={`${codeLinkBase}/src/app/playground/_components/charts-and-data.tsx`}
-        navUrl={`/playground${inline ? "/" : "#"}charts-and-data`}
+        codeUrl={`${codeLinkBase}/src/app/playground/_components/ecommerce.tsx`}
+        navUrl={`/playground${inline ? "/" : "#"}ecommerce`}
         inline={inline}
       >
         <div className="space-y-4" ref={ref}>
@@ -75,13 +75,11 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
           >
             {isExpanded ? (
               <>
-                Ok that&apos;s enough, thanks{" "}
-                <ChevronUp className="ml-2 h-4 w-4" />
+                5 pm already? <ChevronUp className="ml-2 h-4 w-4" />
               </>
             ) : (
               <>
-                Lemme see that data
-                <ChevronDown className="ml-2 h-4 w-4" />
+                Let&apos;s get to work <ChevronDown className="ml-2 h-4 w-4" />
               </>
             )}
           </Button>
@@ -506,7 +504,7 @@ export async function generateMockData() {
   const users = generateMockUsers(5);
   const shops = generateMockShops(users);
   const products = generateMockProducts(shops, 10);
-  const orders = generateMockOrders(users, products, 15).map(
+  const orders = generateMockOrders(users, products, 25).map(
     (ord) => new Order(ord)
   );
 

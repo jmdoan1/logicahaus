@@ -21,8 +21,8 @@ import {
 import { Card, CardContent } from "@/app/_components/ui/card";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Skeleton } from "@/app/_components/ui/skeleton";
-import type { Product, Shop } from "../charts-and-data";
-import { formatCurrency, getShopName } from "../charts-and-data";
+import type { Product, Shop } from "../ecommerce";
+import { formatCurrency, getShopName } from "../ecommerce";
 
 export function ItemsManagement({
   products,

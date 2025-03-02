@@ -33,7 +33,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
-import { type IOrderWithFunctionData, OrderStatus } from "./charts-and-data";
+import { type IOrderWithFunctionData, OrderStatus } from "./ecommerce";
 
 const columns: ColumnDef<IOrderWithFunctionData>[] = [
   {

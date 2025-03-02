@@ -25,12 +25,8 @@ import {
   type Product,
   type Shop,
   OrderStatus,
-} from "../charts-and-data";
-import {
-  formatCurrency,
-  getProductName,
-  getShopName,
-} from "../charts-and-data";
+} from "../ecommerce";
+import { formatCurrency, getProductName, getShopName } from "../ecommerce";
 
 export function OrdersManagement({
   orders,
@@ -104,13 +100,13 @@ export function OrdersManagement({
           ))}
         </div>
       ) : (
-        <Table>
+        <Table className="mx-auto">
           <TableHeader>
             <TableRow>
               <TableHead>Order ID</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Product</TableHead>
-              <TableHead>Shop</TableHead>
+              {/* <TableHead>Shop</TableHead> */}
               <TableHead>Amount</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
@@ -131,7 +127,7 @@ export function OrdersManagement({
                   <TableCell>
                     {getProductName(order.productId, products)}
                   </TableCell>
-                  <TableCell>{getShopName(order.shopId, shops)}</TableCell>
+                  {/* <TableCell>{getShopName(order.shopId, shops)}</TableCell> */}
                   <TableCell>{formatCurrency(order.amount)}</TableCell>
                   <TableCell>
                     <Badge variant={getStatusBadgeVariant(order.status)}>
@@ -139,6 +135,14 @@ export function OrdersManagement({
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
+                    {order.status < OrderStatus.Delivered && (
+                      <Button
+                        size="sm"
+                        onClick={() => updateOrderStatus(order.id)}
+                      >
+                        {getNextStatusLabel(order.status)}
+                      </Button>
+                    )}
                     <Button
                       variant="outline"
                       size="sm"
@@ -150,14 +154,6 @@ export function OrdersManagement({
                     >
                       View
                     </Button>
-                    {order.status < OrderStatus.Delivered && (
-                      <Button
-                        size="sm"
-                        onClick={() => updateOrderStatus(order.id)}
-                      >
-                        {getNextStatusLabel(order.status)}
-                      </Button>
-                    )}
                   </TableCell>
                 </TableRow>
               ))

@@ -27,8 +27,8 @@ import {
 } from "@/app/_components/ui/select";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Skeleton } from "@/app/_components/ui/skeleton";
-import type { Shop, User } from "../charts-and-data";
-import { getUserName } from "../charts-and-data";
+import type { Shop, User } from "../ecommerce";
+import { getUserName } from "../ecommerce";
 
 export function ShopsManagement({
   shops,
@@ -110,7 +110,7 @@ export function ShopsManagement({
           ))}
         </div>
       ) : (
-        <Table>
+        <Table className="mx-auto">
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
