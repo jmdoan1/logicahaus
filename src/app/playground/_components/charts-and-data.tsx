@@ -1,63 +1,68 @@
 "use client";
 
-import { ChevronDown, ChevronUp, RefreshCw } from "lucide-react";
-import { Button } from "@/app/_components/ui/button";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import PlayGroundCard from "./playground-card";
 import { codeLinkBase } from "../../global";
 import { faker } from "@faker-js/faker";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  Legend,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import { OrdersTable } from "./orders-table";
+import { OrdersManagement } from "./dashboard/orders-management";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/app/_components/ui/tabs";
+import { ItemsManagement } from "./dashboard/items-management";
+import { ShopsManagement } from "./dashboard/shops-management";
+import { DashboardOverview } from "./dashboard/dashboard-overview";
+import { Button } from "@/app/_components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function ChartsAndData({ inline }: { inline?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(!inline);
-  const [chartWidth, setChartWidth] = useState(0);
+  const [activeTab, setActiveTab] = useState("overview");
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const { data, refetch } = useQuery({
-    queryKey: ["ip"],
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ["dashboard-data"],
     queryFn: async () => {
       const res = await generateMockData();
       return res;
     },
   });
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (ref.current) setChartWidth(ref.current.offsetWidth / 2);
-  }, [ref]);
-
   const orderData = useCallback(
     () => (data?.orders ?? []).map((o) => o.withFunctionData()),
     [data]
   );
 
-  const statusData = useCallback(
-    () => processStatusData(orderData()),
-    [orderData]
-  );
+  const updateOrderStatus = useCallback(
+    (orderId: number) => {
+      if (!data) return;
 
-  const financialData = useCallback(
-    () => processFinancialData(orderData() ?? []),
-    [orderData]
+      const orderIndex = data.orders.findIndex((order) => order.id === orderId);
+      if (orderIndex === -1) return;
+
+      const order = data.orders[orderIndex];
+      const currentStatus = order.status();
+      const nextStatus = currentStatus + 100;
+
+      // Only update if there's a next status to move to
+      if (nextStatus <= 600) {
+        order.timeLine[nextStatus as OrderStatus] = new Date();
+        // Force a re-render
+        refetch();
+      }
+    },
+    [data, refetch]
   );
 
   return (
     <section id="charts-and-data">
       <PlayGroundCard
-        title="Charts and Data 📊"
-        description="Need some reports?"
-        footerText="📈"
+        title="E-commerce Admin Dashboard"
+        description="Manage your shops, products, and orders"
+        footerText="Admin Dashboard"
         codeUrl={`${codeLinkBase}/src/app/playground/_components/charts-and-data.tsx`}
         navUrl={`/playground${inline ? "/" : "#"}charts-and-data`}
         inline={inline}
@@ -81,75 +86,55 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
             )}
           </Button>
           {isExpanded && (
-            <div className="mt-4 space-y-2">
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => refetch()}
-              >
-                Regenerate <RefreshCw />
-              </Button>
-              <div className="flex flex-col lg:flex-row">
-                <div className="flex flex-col flex-1 text-center items-center mt-10">
-                  <p className="text-xl font-extrabold">Orders by Status</p>
-                  <BarChart
-                    width={chartWidth}
-                    height={chartWidth}
-                    // width={(ref.current?.offsetWidth ?? 0) / 2}
-                    // height={(ref.current?.offsetWidth ?? 0) / 3}
-                    data={statusData()}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 50 }} // Increase bottom margin for tilted labels
-                  >
-                    <XAxis
-                      dataKey="status"
-                      angle={-45} // Tilt labels by 45 degrees
-                      textAnchor="end" // Align the end of the label text with the tick
-                      interval={0} // Ensure all labels are displayed
-                    />
-                    <YAxis />
-                    <RechartsTooltip
-                    //   formatter={(value) => [`Count: ${value}`]} // Custom tooltip format
-                    />
-                    {/* <Legend /> */}
-                    <Bar dataKey="count" fill="#8884d8" />
-                  </BarChart>
-                </div>
-                <div className="flex flex-col flex-1 text-center items-center mt-10">
-                  <p className="text-xl font-extrabold">Funds</p>
-                  <PieChart
-                    width={chartWidth}
-                    height={chartWidth}
-                    // width={(ref.current?.offsetWidth ?? 0) / 2}
-                    // height={(ref.current?.offsetWidth ?? 0) / 3}
-                  >
-                    <Pie
-                      data={financialData()}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={100}
-                      fill="#8884d8"
-                      label={({ value }) => `$${value.toLocaleString()}`} // Custom label format
-                    >
-                      {financialData().map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <RechartsTooltip
-                      formatter={(value, name) => [
-                        `${name}: $${value.toLocaleString()}`,
-                      ]} // Custom tooltip format
-                    />
-                    <Legend />
-                  </PieChart>
-                </div>
-              </div>
-              {/* <OrdersTable orders={orderData} /> */}
-              <div>
-                <OrdersTable orders={orderData()} />
-              </div>
-            </div>
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
+              <TabsList className="grid grid-cols-4 mb-4">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="shops">Shops</TabsTrigger>
+                <TabsTrigger value="items">Items</TabsTrigger>
+                <TabsTrigger value="orders">Orders</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="overview" className="mt-0">
+                <DashboardOverview
+                  orders={orderData()}
+                  shops={data?.shops || []}
+                  products={data?.products || []}
+                  isLoading={isLoading}
+                />
+              </TabsContent>
+
+              <TabsContent value="shops" className="mt-0">
+                <ShopsManagement
+                  shops={data?.shops || []}
+                  users={data?.users || []}
+                  refetch={refetch}
+                  isLoading={isLoading}
+                />
+              </TabsContent>
+
+              <TabsContent value="items" className="mt-0">
+                <ItemsManagement
+                  products={data?.products || []}
+                  shops={data?.shops || []}
+                  refetch={refetch}
+                  isLoading={isLoading}
+                />
+              </TabsContent>
+
+              <TabsContent value="orders" className="mt-0">
+                <OrdersManagement
+                  orders={orderData()}
+                  products={data?.products || []}
+                  shops={data?.shops || []}
+                  updateOrderStatus={updateOrderStatus}
+                  isLoading={isLoading}
+                />
+              </TabsContent>
+            </Tabs>
           )}
         </div>
       </PlayGroundCard>
@@ -157,7 +142,7 @@ export default function ChartsAndData({ inline }: { inline?: boolean }) {
   );
 }
 
-type User = {
+export type User = {
   id: number;
   email: string;
   username: string;
@@ -166,13 +151,13 @@ type User = {
   createdAt: Date;
 };
 
-type Shop = {
+export type Shop = {
   id: number;
   name: string;
   ownerId: number;
 };
 
-type Product = {
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -189,11 +174,11 @@ export enum OrderStatus {
   Delivered = 600,
 }
 
-type NonOrderedStatus = Exclude<OrderStatus, OrderStatus.Ordered>;
-type StatusDistribution = Record<NonOrderedStatus, number>;
-type StatusTimeline = Partial<Record<OrderStatus, Date>>;
+export type NonOrderedStatus = Exclude<OrderStatus, OrderStatus.Ordered>;
+export type StatusDistribution = Record<NonOrderedStatus, number>;
+export type StatusTimeline = Partial<Record<OrderStatus, Date>>;
 
-interface IOrder {
+export interface IOrder {
   id: number;
   orderDate: Date;
   amount: number;
@@ -204,7 +189,7 @@ interface IOrder {
   timeLine: StatusTimeline;
 }
 
-interface Milestone {
+export interface Milestone {
   status: OrderStatus;
   date?: Date;
   percentage: number;
@@ -220,7 +205,7 @@ export interface IOrderWithFunctionData extends IOrder {
   };
 }
 
-class Order implements IOrder {
+export class Order implements IOrder {
   id: number;
   orderDate: Date;
   amount: number;
@@ -382,7 +367,10 @@ class Order implements IOrder {
   }
 }
 
-function generateIntegerArrayNoZeros(length: number, total: number): number[] {
+export function generateIntegerArrayNoZeros(
+  length: number,
+  total: number
+): number[] {
   if (!Number.isInteger(length) || length < 1) {
     throw new Error("Array length must be a positive integer (>= 1).");
   }
@@ -419,7 +407,7 @@ function generateIntegerArrayNoZeros(length: number, total: number): number[] {
   return result;
 }
 
-function generateMockUsers(amount: number = 10): User[] {
+export function generateMockUsers(amount: number = 10): User[] {
   return [...Array(amount).keys()].map((): User => {
     return {
       id: Math.floor(Math.random() * 10000),
@@ -432,7 +420,7 @@ function generateMockUsers(amount: number = 10): User[] {
   });
 }
 
-function generateMockShops(
+export function generateMockShops(
   forUsers: User[],
   amountPerUser: number = 1
 ): Shop[] {
@@ -447,7 +435,7 @@ function generateMockShops(
   });
 }
 
-function generateMockProducts(
+export function generateMockProducts(
   forShops: Shop[],
   amountPerShop: number = 5
 ): Product[] {
@@ -464,7 +452,7 @@ function generateMockProducts(
   );
 }
 
-function generateMockOrders(
+export function generateMockOrders(
   users: User[],
   products: Product[],
   amount: number = 5
@@ -514,7 +502,7 @@ function generateMockOrders(
   return orders;
 }
 
-async function generateMockData() {
+export async function generateMockData() {
   const users = generateMockUsers(5);
   const shops = generateMockShops(users);
   const products = generateMockProducts(shops, 10);
@@ -530,7 +518,7 @@ async function generateMockData() {
   };
 }
 
-function processStatusData(
+export function processStatusData(
   orders: IOrderWithFunctionData[]
 ): { status: string; count: number }[] {
   const statusCounts = orders.reduce((acc, order) => {
@@ -545,7 +533,7 @@ function processStatusData(
   }));
 }
 
-function processFinancialData(
+export function processFinancialData(
   orders: IOrderWithFunctionData[]
 ): { name: string; value: number; color: string }[] {
   const financials = orders.reduce(
@@ -576,4 +564,26 @@ function processFinancialData(
       color: "#00C49F", // Green
     },
   ];
+}
+
+export function getUserName(userId: number, users: User[]): string {
+  const user = users.find((u) => u.id === userId);
+  return user ? `${user.nameFirst} ${user.nameLast}` : "Unknown User";
+}
+
+export function getShopName(shopId: number, shops: Shop[]): string {
+  const shop = shops.find((s) => s.id === shopId);
+  return shop ? shop.name : "Unknown Shop";
+}
+
+export function getProductName(productId: number, products: Product[]): string {
+  const product = products.find((p) => p.id === productId);
+  return product ? product.name : "Unknown Product";
+}
+
+export function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
 }
