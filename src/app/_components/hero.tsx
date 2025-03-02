@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Button } from "@/app/_components/ui/button";
+// import { Button } from "@/app/_components/ui/button";
 import { motion, useAnimation } from "framer-motion";
 
 const Hero = () => {
@@ -35,7 +35,7 @@ const Hero = () => {
               development. From concept to code, we bring your vision to life.
             </p>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
@@ -47,7 +47,7 @@ const Hero = () => {
             <Button size="lg" variant="outline">
               Learn More
             </Button>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>

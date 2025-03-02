@@ -10,7 +10,8 @@ const Who = () => {
   const delayLogicaEach = 0.1;
   const delayDude = delayLogicaMain + 1.5;
   const delayShrug = delayDude + durationDefault + 0.5;
-  const delayBut = delayShrug + 0.75;
+  const delayBackground = delayShrug + durationDefault + 0.5;
+  const delayBut = delayBackground + 0.75;
   const delayNetwork = delayBut + 1.25;
 
   return (
@@ -61,7 +62,7 @@ const Who = () => {
               className="justify-center"
             >
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                I&apos;m really just a dude named Jay
+                I&apos;m really just a freelance dev named Jay
               </p>
             </MotionSpan>
             <div>
@@ -77,6 +78,16 @@ const Who = () => {
               </MotionSpan>
             </div>
           </div>
+        </MotionSpan>
+        <MotionSpan
+          initial={{ y: -50, opacity: 0 }}
+          final={{ y: -12.5, opacity: 1 }}
+          transition={{ duration: durationDefault, delay: delayBackground }}
+          className="flex flex-col items-center text-center pt-0 -mt-20"
+        >
+          <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            (with a background in accounting and finance)
+          </p>
         </MotionSpan>
         <div
           style={{

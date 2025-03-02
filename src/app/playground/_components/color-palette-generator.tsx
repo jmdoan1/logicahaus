@@ -25,8 +25,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
-  CardDescription,
   CardFooter,
 } from "@/app/_components/ui/card";
 import {
@@ -440,153 +438,153 @@ export default function ColorPaletteGenerator({
     </section>
   );
 
-  return (
-    <div className="min-h-screen p-8 flex items-center justify-center bg-gray-50">
-      <Toaster />
-      <Card className="w-full max-w-5xl">
-        <CardHeader>
-          <CardTitle className="text-2xl">Color Palette Generator</CardTitle>
-          <CardDescription>
-            Generate harmonious color palettes for your designs
-          </CardDescription>
-        </CardHeader>
+  // return (
+  //   <div className="min-h-screen p-8 flex items-center justify-center bg-gray-50">
+  //     <Toaster />
+  //     <Card className="w-full max-w-5xl">
+  //       <CardHeader>
+  //         <CardTitle className="text-2xl">Color Palette Generator</CardTitle>
+  //         <CardDescription>
+  //           Generate harmonious color palettes for your designs
+  //         </CardDescription>
+  //       </CardHeader>
 
-        <CardContent>
-          <div className="flex flex-col space-y-6">
-            <div className="flex flex-col sm:flex-row gap-4 items-center">
-              <div className="w-full sm:w-1/3">
-                <Label htmlFor="scheme-select">Color Scheme</Label>
-                <Select
-                  value={colorScheme}
-                  onValueChange={(value) =>
-                    setColorScheme(value as ColorScheme)
-                  }
-                >
-                  <SelectTrigger id="scheme-select">
-                    <SelectValue placeholder="Select scheme" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="analogous">Analogous</SelectItem>
-                    <SelectItem value="monochromatic">Monochromatic</SelectItem>
-                    <SelectItem value="complementary">Complementary</SelectItem>
-                    <SelectItem value="triadic">Triadic</SelectItem>
-                    <SelectItem value="random">Random</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+  //       <CardContent>
+  //         <div className="flex flex-col space-y-6">
+  //           <div className="flex flex-col sm:flex-row gap-4 items-center">
+  //             <div className="w-full sm:w-1/3">
+  //               <Label htmlFor="scheme-select">Color Scheme</Label>
+  //               <Select
+  //                 value={colorScheme}
+  //                 onValueChange={(value) =>
+  //                   setColorScheme(value as ColorScheme)
+  //                 }
+  //               >
+  //                 <SelectTrigger id="scheme-select">
+  //                   <SelectValue placeholder="Select scheme" />
+  //                 </SelectTrigger>
+  //                 <SelectContent>
+  //                   <SelectItem value="analogous">Analogous</SelectItem>
+  //                   <SelectItem value="monochromatic">Monochromatic</SelectItem>
+  //                   <SelectItem value="complementary">Complementary</SelectItem>
+  //                   <SelectItem value="triadic">Triadic</SelectItem>
+  //                   <SelectItem value="random">Random</SelectItem>
+  //                 </SelectContent>
+  //               </Select>
+  //             </div>
 
-              <div className="w-full sm:w-2/3 flex justify-end gap-2">
-                <Button
-                  onClick={generatePalette}
-                  className="flex items-center gap-2"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Generate
-                </Button>
+  //             <div className="w-full sm:w-2/3 flex justify-end gap-2">
+  //               <Button
+  //                 onClick={generatePalette}
+  //                 className="flex items-center gap-2"
+  //               >
+  //                 <RefreshCw className="w-4 h-4" />
+  //                 Generate
+  //               </Button>
 
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={exportPalette}
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <Download className="w-4 h-4" />
-                        JSON
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Export as JSON file</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+  //               <TooltipProvider>
+  //                 <Tooltip>
+  //                   <TooltipTrigger asChild>
+  //                     <Button
+  //                       onClick={exportPalette}
+  //                       variant="outline"
+  //                       className="flex items-center gap-2"
+  //                     >
+  //                       <Download className="w-4 h-4" />
+  //                       JSON
+  //                     </Button>
+  //                   </TooltipTrigger>
+  //                   <TooltipContent>
+  //                     <p>Export as JSON file</p>
+  //                   </TooltipContent>
+  //                 </Tooltip>
+  //               </TooltipProvider>
 
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={exportAsCss}
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <Download className="w-4 h-4" />
-                        CSS
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Export as CSS variables</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </div>
+  //               <TooltipProvider>
+  //                 <Tooltip>
+  //                   <TooltipTrigger asChild>
+  //                     <Button
+  //                       onClick={exportAsCss}
+  //                       variant="outline"
+  //                       className="flex items-center gap-2"
+  //                     >
+  //                       <Download className="w-4 h-4" />
+  //                       CSS
+  //                     </Button>
+  //                   </TooltipTrigger>
+  //                   <TooltipContent>
+  //                     <p>Export as CSS variables</p>
+  //                   </TooltipContent>
+  //                 </Tooltip>
+  //               </TooltipProvider>
+  //             </div>
+  //           </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-0 h-64">
-              {colors.map((color) => (
-                <div
-                  key={color.id}
-                  className="h-full overflow-hidden flex flex-col"
-                  style={{
-                    backgroundColor: color.hex,
-                    color: getContrastColor(color.hex),
-                  }}
-                >
-                  <div className="flex-1 p-4 flex flex-col justify-between">
-                    <div className="flex justify-between">
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => toggleLock(color.id)}
-                        className="h-8 w-8 bg-white/20 backdrop-blur-sm hover:bg-white/30"
-                      >
-                        {color.locked ? (
-                          <Lock className="h-4 w-4" />
-                        ) : (
-                          <Unlock className="h-4 w-4" />
-                        )}
-                      </Button>
+  //           <div className="grid grid-cols-1 sm:grid-cols-5 gap-0 h-64">
+  //             {colors.map((color) => (
+  //               <div
+  //                 key={color.id}
+  //                 className="h-full overflow-hidden flex flex-col"
+  //                 style={{
+  //                   backgroundColor: color.hex,
+  //                   color: getContrastColor(color.hex),
+  //                 }}
+  //               >
+  //                 <div className="flex-1 p-4 flex flex-col justify-between">
+  //                   <div className="flex justify-between">
+  //                     <Button
+  //                       size="icon"
+  //                       variant="ghost"
+  //                       onClick={() => toggleLock(color.id)}
+  //                       className="h-8 w-8 bg-white/20 backdrop-blur-sm hover:bg-white/30"
+  //                     >
+  //                       {color.locked ? (
+  //                         <Lock className="h-4 w-4" />
+  //                       ) : (
+  //                         <Unlock className="h-4 w-4" />
+  //                       )}
+  //                     </Button>
 
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => copyToClipboard(color.hex, color.id)}
-                        className="h-8 w-8 bg-white/20 backdrop-blur-sm hover:bg-white/30"
-                      >
-                        {copied === color.id ? (
-                          <Check className="h-4 w-4" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
-                      </Button>
-                    </div>
+  //                     <Button
+  //                       size="icon"
+  //                       variant="ghost"
+  //                       onClick={() => copyToClipboard(color.hex, color.id)}
+  //                       className="h-8 w-8 bg-white/20 backdrop-blur-sm hover:bg-white/30"
+  //                     >
+  //                       {copied === color.id ? (
+  //                         <Check className="h-4 w-4" />
+  //                       ) : (
+  //                         <Copy className="h-4 w-4" />
+  //                       )}
+  //                     </Button>
+  //                   </div>
 
-                    <div className="mt-auto">
-                      <p className="font-mono text-sm font-bold mb-1">
-                        {color.hex}
-                      </p>
-                      <Input
-                        value={color.name}
-                        onChange={(e) =>
-                          updateColorName(color.id, e.target.value)
-                        }
-                        className="bg-white/20 backdrop-blur-sm border-0 text-current placeholder:text-current/70"
-                        style={{ color: getContrastColor(color.hex) }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
+  //                   <div className="mt-auto">
+  //                     <p className="font-mono text-sm font-bold mb-1">
+  //                       {color.hex}
+  //                     </p>
+  //                     <Input
+  //                       value={color.name}
+  //                       onChange={(e) =>
+  //                         updateColorName(color.id, e.target.value)
+  //                       }
+  //                       className="bg-white/20 backdrop-blur-sm border-0 text-current placeholder:text-current/70"
+  //                       style={{ color: getContrastColor(color.hex) }}
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </div>
+  //         </div>
+  //       </CardContent>
 
-        <CardFooter className="flex justify-between">
-          <p className="text-sm text-muted-foreground">
-            Lock colors you want to keep when generating new palettes
-          </p>
-        </CardFooter>
-      </Card>
-    </div>
-  );
+  //       <CardFooter className="flex justify-between">
+  //         <p className="text-sm text-muted-foreground">
+  //           Lock colors you want to keep when generating new palettes
+  //         </p>
+  //       </CardFooter>
+  //     </Card>
+  //   </div>
+  // );
 }
