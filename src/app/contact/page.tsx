@@ -8,6 +8,7 @@ import {
   ProjectContainer,
   ProjectContent,
 } from "../_components/project-templates";
+import posthog from "posthog-js";
 
 export default function Page() {
   const router = useRouter();
@@ -29,6 +30,9 @@ export default function Page() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    posthog.capture("contact_form_submitted");
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -112,11 +116,21 @@ export default function Page() {
         <p className="or" style={{ margin: 15 }}>
           OR
         </p>
-        <h2 className="h2">Email: jay@logica.haus</h2>
+        <h2
+          className="h2"
+          onCopy={() => posthog.capture("contact_email_copied")}
+        >
+          Email: jay@logica.haus
+        </h2>
         <p className="or" style={{ margin: 15 }}>
           OR
         </p>
-        <h2 className="h2">Call: (904) 878-0128</h2>
+        <h2
+          className="h2"
+          onCopy={() => posthog.capture("contact_number_copied")}
+        >
+          Call: (904) 878-0128
+        </h2>
       </ProjectContent>
     </ProjectContainer>
   );
