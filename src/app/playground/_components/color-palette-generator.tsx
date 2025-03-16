@@ -367,7 +367,7 @@ export default function ColorPaletteGenerator({
                       {colors.map((color) => (
                         <div
                           key={color.id}
-                          className="h-full overflow-hidden flex flex-col"
+                          className="h-full flex flex-col"
                           style={{
                             backgroundColor: color.hex,
                             color: getContrastColor(color.hex),
