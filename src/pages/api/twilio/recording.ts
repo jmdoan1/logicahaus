@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import twilio from "twilio";
 import { parseTwilioBody } from "@/app/_lib/twilio-helper";
-import { sendSmsEmail } from "@/app/_lib/email";
 import { logger } from "@/app/_lib/logger";
+import { sendPushover } from "@/app/_lib/pushover";
 
 const { VoiceResponse } = twilio.twiml;
 
@@ -38,18 +38,17 @@ export default async function handler(
   const recordingMp3Url = recordingUrl ? `${recordingUrl}.mp3` : recordingUrl;
 
   try {
-    logger.info("Sending voicemail email", { brandName, from, duration });
-    await sendSmsEmail({
-      subject: `Voicemail for ${brandName}`,
-      text:
-        `New voicemail for ${brandName}\n` +
+    logger.info("Sending voicemail notification", { brandName, from, duration });
+    await sendPushover(
+      `New voicemail for ${brandName}\n` +
         `From: ${from}\n` +
         `Duration: ${duration} seconds\n` +
         `Listen: ${recordingMp3Url}`,
-    });
-    logger.info("Voicemail email sent successfully");
+      recordingMp3Url
+    );
+    logger.info("Voicemail notification sent successfully");
   } catch (err) {
-    logger.error("Error sending voicemail email", { error: err });
+    logger.error("Error sending voicemail notification", { error: err });
   }
 
   const twiml = new VoiceResponse();

@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import twilio from "twilio";
 import { parseTwilioBody } from "@/app/_lib/twilio-helper";
-import { sendSmsEmail } from "@/app/_lib/email";
 import { logger } from "@/app/_lib/logger";
+import { sendPushover } from "@/app/_lib/pushover";
 
 const { VoiceResponse } = twilio.twiml;
 
@@ -67,18 +67,16 @@ export default async function handler(
 
   // Fire off an email→SMS to you about the incoming call
   try {
-    logger.info("Sending incoming call notification email", { brandName: brand.name, callerNumber, calledNumber });
-    await sendSmsEmail({
-      subject: `Incoming call for ${brand.name}`,
-      text:
-        `Incoming call for ${brand.name}\n` +
+    logger.info("Sending incoming call notification", { brandName: brand.name, callerNumber, calledNumber });
+    await sendPushover(
+      `Incoming call for ${brand.name}\n` +
         `From: ${callerNumber}\n` +
         `To: ${calledNumber}\n` +
         `Time: ${new Date().toISOString()}`,
-    });
-    logger.info("Incoming call email sent successfully");
+    );  
+    logger.info("Incoming call notification sent successfully");
   } catch (err) {
-    logger.error("Error sending incoming-call email", { error: err });
+    logger.error("Error sending incoming-call notification", { error: err });
   }
 
   const myCell = process.env.MY_CELL_PHONE_NUMBER;
