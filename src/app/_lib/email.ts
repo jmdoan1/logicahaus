@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { logger } from "./logger";
 
 export const mailer = nodemailer.createTransport({
   service: "gmail",
@@ -11,7 +12,7 @@ export const mailer = nodemailer.createTransport({
 export async function sendSmsEmail(options: { subject: string; text: string }) {
   const to = process.env.MY_SMS_EMAIL;
   if (!to) {
-    console.error("MY_SMS_EMAIL not set, skipping email");
+    logger.error("MY_SMS_EMAIL not set, skipping email");
     return;
   }
 
