@@ -43,7 +43,7 @@ export default async function handler(
   }
 
   const params = await parseTwilioBody(req);
-  logger.debug("Parsed Twilio body", { params });
+  logger.info("Parsed Twilio body", { params });
   
   const calledNumber = params.To; // Twilio number that was called
   const callerNumber = params.From; // original caller
@@ -51,7 +51,7 @@ export default async function handler(
   logger.info("Incoming call", { calledNumber, callerNumber });
   
   const brand = BRANDS[calledNumber];
-  logger.debug("Brand lookup", { calledNumber, brandFound: !!brand, brandName: brand?.name });
+  logger.info("Brand lookup", { calledNumber, brandFound: !!brand, brandName: brand?.name });
 
   if (!brand) {
     logger.error("Unknown brand number", { calledNumber, availableBrands: Object.keys(BRANDS) });
@@ -59,7 +59,7 @@ export default async function handler(
     twiml.say("This number is not configured. Goodbye.");
     twiml.hangup();
     const twimlResponse = twiml.toString();
-    logger.debug("Sending error TwiML", { twiml: twimlResponse });
+    logger.info("Sending error TwiML", { twiml: twimlResponse });
     res.setHeader("Content-Type", "text/xml");
     res.status(200).send(twimlResponse);
     return;
@@ -86,7 +86,7 @@ export default async function handler(
     twiml.say("Temporarily unable to connect the call. Goodbye.");
     twiml.hangup();
     const twimlResponse = twiml.toString();
-    logger.debug("Sending error TwiML for missing cell number", { twiml: twimlResponse });
+    logger.info("Sending error TwiML for missing cell number", { twiml: twimlResponse });
     res.setHeader("Content-Type", "text/xml");
     res.status(200).send(twimlResponse);
     return;
@@ -117,7 +117,7 @@ export default async function handler(
   dial.number(myCell);
 
   const twimlResponse = twiml.toString();
-  logger.debug("Sending dial TwiML response", { twiml: twimlResponse });
+  logger.info("Sending dial TwiML response", { twiml: twimlResponse });
   
   res.setHeader("Content-Type", "text/xml");
   res.status(200).send(twimlResponse);
