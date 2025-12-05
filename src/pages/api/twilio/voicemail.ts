@@ -26,7 +26,7 @@ export default async function handler(
     return;
   }
 
-  const params = await parseTwilioBody(req);
+  //   const params = await parseTwilioBody(req);
   const brandName =
     (req.query.brand as string) ||
     "Unknown Brand"; /* fallback if query missing */
