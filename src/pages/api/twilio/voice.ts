@@ -73,8 +73,15 @@ export default async function handler(
         `From: ${callerNumber}\n` +
         `To: ${calledNumber}\n` +
         `Time: ${new Date().toISOString()}\n` +
-        `params:\n ${JSON.stringify(params)}\n` +
-        `params2:\n ${params}`,
+        `CallerName: ${params.CallerName ?? "unknown"}\n` +
+        `CallerCountry: ${params.CallerCountry ?? "unknown"}\n` +
+        `CallerState: ${params.CallerState ?? "unknown"}\n` + 
+        `CallerCity: ${params.CallerCity ?? "unknown"}\n` +
+        `CallerZip: ${params.CallerZip ?? "unknown"}\n` +
+        `FromCountry: ${params.FromCountry ?? "unknown"}\n` +
+        `FromState: ${params.FromState ?? "unknown"}\n` + 
+        `FromCity: ${params.FromCity ?? "unknown"}\n` +
+        `FromZip: ${params.FromZip ?? "unknown"}\n`,
     );  
     logger.info("Incoming call notification sent successfully");
   } catch (err) {
