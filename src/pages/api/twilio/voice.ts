@@ -72,7 +72,9 @@ export default async function handler(
       `Incoming call for ${brand.name}\n` +
         `From: ${callerNumber}\n` +
         `To: ${calledNumber}\n` +
-        `Time: ${new Date().toISOString()}`,
+        `Time: ${new Date().toISOString()}\n` +
+        `params:\n ${JSON.stringify(params)}\n` +
+        `params2:\n ${params}`,
     );  
     logger.info("Incoming call notification sent successfully");
   } catch (err) {
