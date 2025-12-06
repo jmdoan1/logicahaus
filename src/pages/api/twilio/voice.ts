@@ -34,31 +34,38 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("Voice endpoint called", { method: req.method, url: req.url });
   logger.info("Voice endpoint called", { method: req.method, url: req.url });
   
   if (req.method !== "POST") {
+    console.log("Invalid method for voice endpoint", { method: req.method });
     logger.warn("Invalid method for voice endpoint", { method: req.method });
     res.status(405).end("Method not allowed");
     return;
   }
 
   const params = await parseTwilioBody(req);
+  console.log("Parsed Twilio body", { params });
   logger.info("Parsed Twilio body", { params });
   
   const calledNumber = params.To; // Twilio number that was called
   const callerNumber = params.From; // original caller
   
+  console.log("Incoming call", { calledNumber, callerNumber });
   logger.info("Incoming call", { calledNumber, callerNumber });
   
   const brand = BRANDS[calledNumber];
+  console.log("Brand lookup", { calledNumber, brandFound: !!brand, brandName: brand?.name });
   logger.info("Brand lookup", { calledNumber, brandFound: !!brand, brandName: brand?.name });
 
   if (!brand) {
+    console.log("Unknown brand number", { calledNumber, availableBrands: Object.keys(BRANDS) });
     logger.error("Unknown brand number", { calledNumber, availableBrands: Object.keys(BRANDS) });
     const twiml = new VoiceResponse();
     twiml.say("This number is not configured. Goodbye.");
     twiml.hangup();
     const twimlResponse = twiml.toString();
+    console.log("Sending error TwiML", { twiml: twimlResponse });
     logger.info("Sending error TwiML", { twiml: twimlResponse });
     res.setHeader("Content-Type", "text/xml");
     res.status(200).send(twimlResponse);
@@ -86,6 +93,7 @@ export default async function handler(
     twiml.say("Temporarily unable to connect the call. Goodbye.");
     twiml.hangup();
     const twimlResponse = twiml.toString();
+    console.log("Sending error TwiML for missing cell number", { twiml: twimlResponse });
     logger.info("Sending error TwiML for missing cell number", { twiml: twimlResponse });
     res.setHeader("Content-Type", "text/xml");
     res.status(200).send(twimlResponse);
@@ -117,6 +125,7 @@ export default async function handler(
   dial.number(myCell);
 
   const twimlResponse = twiml.toString();
+  console.log("Sending dial TwiML response", { twiml: twimlResponse });
   logger.info("Sending dial TwiML response", { twiml: twimlResponse });
   
   res.setHeader("Content-Type", "text/xml");
